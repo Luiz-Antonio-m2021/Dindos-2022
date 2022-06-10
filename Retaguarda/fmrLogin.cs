@@ -16,5 +16,17 @@ namespace Retaguarda
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ValidarCampos();
+        }
+        private void ValidarCampos()
+        {
+            if (txtLogin.Text.Trim() == "" || txtSenha.Text.Trim() == "")
+            {
+                MessageBox.Show("Login ou senha não foram preenchidos");
+            }
+        }
     }
 }
