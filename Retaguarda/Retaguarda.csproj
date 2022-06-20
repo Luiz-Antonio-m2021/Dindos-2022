@@ -52,11 +52,23 @@
     <Compile Include="fmrCadParceiroNegocio.Designer.cs">
       <DependentUpon>fmrCadParceiroNegocio.cs</DependentUpon>
     </Compile>
+    <Compile Include="fmrCadTipoPreco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmrCadTipoPreco.Designer.cs">
+      <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fmrLogin.Designer.cs">
       <DependentUpon>fmrLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmrPesquisa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmrPesquisa.Designer.cs">
+      <DependentUpon>fmrPesquisa.cs</DependentUpon>
     </Compile>
     <Compile Include="fmrPrincipal.cs">
       <SubType>Form</SubType>
@@ -66,11 +78,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="fmrCadParceiroNegocio.resx">
       <DependentUpon>fmrCadParceiroNegocio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fmrCadTipoPreco.resx">
+      <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fmrLogin.resx">
       <DependentUpon>fmrLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmrPesquisa.resx">
+      <DependentUpon>fmrPesquisa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmrPrincipal.resx">
       <DependentUpon>fmrPrincipal.cs</DependentUpon>
@@ -96,6 +115,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{7227524c-123b-4a46-9141-63dec74eb044}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{11619eaf-c6f6-4c42-99aa-74c50aad1fff}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilSistema\UtilMensagens.csproj">
+      <Project>{2e847383-b7c8-48eb-a576-4cef0fed080e}</Project>
+      <Name>UtilMensagens</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.parceiroNegocioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoDePreçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,8 @@
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.parceiroNegocioToolStripMenuItem});
+            this.parceiroNegocioToolStripMenuItem,
+            this.tipoDePreçoToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
@@ -58,6 +60,13 @@
             this.parceiroNegocioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.parceiroNegocioToolStripMenuItem.Text = "Parceiro Negocio";
             this.parceiroNegocioToolStripMenuItem.Click += new System.EventHandler(this.parceiroNegocioToolStripMenuItem_Click);
+            // 
+            // tipoDePreçoToolStripMenuItem
+            // 
+            this.tipoDePreçoToolStripMenuItem.Name = "tipoDePreçoToolStripMenuItem";
+            this.tipoDePreçoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipoDePreçoToolStripMenuItem.Text = "Tipo de Preço";
+            this.tipoDePreçoToolStripMenuItem.Click += new System.EventHandler(this.tipoDePreçoToolStripMenuItem_Click);
             // 
             // fmrPrincipal
             // 
@@ -80,5 +89,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parceiroNegocioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tipoDePreçoToolStripMenuItem;
     }
 }

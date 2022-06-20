@@ -22,5 +22,11 @@ namespace Retaguarda
             fmrCadParceiroNegocio f = new fmrCadParceiroNegocio();
             f.ShowDialog();
         }
+
+        private void tipoDePreçoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmrCadTipoPreco f = new fmrCadTipoPreco();
+            f.ShowDialog();
+        }
     }
 }
