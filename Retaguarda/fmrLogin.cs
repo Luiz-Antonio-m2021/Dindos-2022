@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Repository;
+using Model;
 
 namespace Retaguarda
 {
@@ -19,14 +21,49 @@ namespace Retaguarda
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ValidarCampos();
+            tspLogin.Visible = true;
+            tspLogin.Value = 0;
+            if (ValidarCampos())
+            {
+                tspLogin.Value = 25;
+                String Login = txtLogin.Text;
+                String Senha = txtSenha.Text;
+                tspLogin.Value = 50;
+                try
+                {
+                    BehavioFmrLogin rep = new BehavioFmrLogin();
+                    tspLogin.Value = 75;
+                    if (rep.RealizarLogin(Login, Senha))
+                    {
+                        tspLogin.Value = 100;
+                        fmrPrincipal f = new fmrPrincipal(UsuarioVO.Login, UsuarioVO.NomeCompleto);
+                        f.ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario e senha informados não foram encontrados no sistema!");
+                        tspLogin.Visible = false;
+                        statusStrip1.Refresh();
+                    }
+                    
+                }
+                catch (Exception)
+                {
+                    Util.ExibirMsg(Util.TipoMsg.Erro);
+                }
+            }
         }
-        private void ValidarCampos()
+
+        private bool ValidarCampos()
         {
+            Boolean ret = true;
             if (txtLogin.Text.Trim() == "" || txtSenha.Text.Trim() == "")
             {
+                ret = false;
                 MessageBox.Show("Login ou senha não foram preenchidos");
             }
+            return ret;
         }
     }
 }

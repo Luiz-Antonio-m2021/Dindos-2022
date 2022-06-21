@@ -1,0 +1,261 @@
+﻿namespace Retaguarda
+{
+    partial class fmrCadUsuario
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.gpbDados = new System.Windows.Forms.GroupBox();
+            this.gpbPesquisa = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtReSenha = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbmParceiros = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.dgvPesquisa = new System.Windows.Forms.DataGridView();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.sslCadUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.gpbDados.SuspendLayout();
+            this.gpbPesquisa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisa)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // gpbDados
+            // 
+            this.gpbDados.Controls.Add(this.btnAlterar);
+            this.gpbDados.Controls.Add(this.btnSalvar);
+            this.gpbDados.Controls.Add(this.btnExcluir);
+            this.gpbDados.Controls.Add(this.btnCancelar);
+            this.gpbDados.Controls.Add(this.cbmParceiros);
+            this.gpbDados.Controls.Add(this.txtReSenha);
+            this.gpbDados.Controls.Add(this.label3);
+            this.gpbDados.Controls.Add(this.txtSenha);
+            this.gpbDados.Controls.Add(this.label2);
+            this.gpbDados.Controls.Add(this.txtLogin);
+            this.gpbDados.Controls.Add(this.label1);
+            this.gpbDados.Location = new System.Drawing.Point(6, 6);
+            this.gpbDados.Name = "gpbDados";
+            this.gpbDados.Size = new System.Drawing.Size(372, 300);
+            this.gpbDados.TabIndex = 0;
+            this.gpbDados.TabStop = false;
+            this.gpbDados.Text = "Usuario";
+            // 
+            // gpbPesquisa
+            // 
+            this.gpbPesquisa.Controls.Add(this.txtPesquisar);
+            this.gpbPesquisa.Controls.Add(this.dgvPesquisa);
+            this.gpbPesquisa.Location = new System.Drawing.Point(389, 6);
+            this.gpbPesquisa.Name = "gpbPesquisa";
+            this.gpbPesquisa.Size = new System.Drawing.Size(406, 299);
+            this.gpbPesquisa.TabIndex = 1;
+            this.gpbPesquisa.TabStop = false;
+            this.gpbPesquisa.Text = "Pesquisa";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Login:";
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(112, 82);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(174, 20);
+            this.txtLogin.TabIndex = 1;
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(112, 117);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(174, 20);
+            this.txtSenha.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(48, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Senha:";
+            // 
+            // txtReSenha
+            // 
+            this.txtReSenha.Location = new System.Drawing.Point(112, 152);
+            this.txtReSenha.Name = "txtReSenha";
+            this.txtReSenha.Size = new System.Drawing.Size(174, 20);
+            this.txtReSenha.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(48, 155);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Re-senha:";
+            // 
+            // cbmParceiros
+            // 
+            this.cbmParceiros.DisplayMember = "-1";
+            this.cbmParceiros.FormattingEnabled = true;
+            this.cbmParceiros.Location = new System.Drawing.Point(51, 45);
+            this.cbmParceiros.Name = "cbmParceiros";
+            this.cbmParceiros.Size = new System.Drawing.Size(235, 21);
+            this.cbmParceiros.TabIndex = 6;
+            this.cbmParceiros.Text = "-Selecione o parceiro-";
+            this.cbmParceiros.ValueMember = "-1";
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(8, 217);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Location = new System.Drawing.Point(129, 217);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 8;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Location = new System.Drawing.Point(256, 217);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.TabIndex = 9;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            // 
+            // btnAlterar
+            // 
+            this.btnAlterar.Location = new System.Drawing.Point(256, 217);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 10;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            // 
+            // dgvPesquisa
+            // 
+            this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPesquisa.Location = new System.Drawing.Point(6, 56);
+            this.dgvPesquisa.MultiSelect = false;
+            this.dgvPesquisa.Name = "dgvPesquisa";
+            this.dgvPesquisa.ReadOnly = true;
+            this.dgvPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPesquisa.Size = new System.Drawing.Size(393, 237);
+            this.dgvPesquisa.TabIndex = 11;
+            this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(25, 29);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(305, 20);
+            this.txtPesquisar.TabIndex = 12;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sslCadUsuario});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 312);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // sslCadUsuario
+            // 
+            this.sslCadUsuario.Name = "sslCadUsuario";
+            this.sslCadUsuario.Size = new System.Drawing.Size(0, 17);
+            // 
+            // fmrCadUsuario
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 334);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.gpbPesquisa);
+            this.Controls.Add(this.gpbDados);
+            this.Name = "fmrCadUsuario";
+            this.Text = "Cadastro de Uuario";
+            this.Load += new System.EventHandler(this.fmrCadUsuario_Load);
+            this.gpbDados.ResumeLayout(false);
+            this.gpbDados.PerformLayout();
+            this.gpbPesquisa.ResumeLayout(false);
+            this.gpbPesquisa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisa)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox gpbDados;
+        private System.Windows.Forms.Button btnAlterar;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox cbmParceiros;
+        private System.Windows.Forms.TextBox txtReSenha;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gpbPesquisa;
+        private System.Windows.Forms.DataGridView dgvPesquisa;
+        private System.Windows.Forms.TextBox txtPesquisar;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel sslCadUsuario;
+    }
+}

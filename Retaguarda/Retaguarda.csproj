@@ -58,6 +58,12 @@
     <Compile Include="fmrCadTipoPreco.Designer.cs">
       <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
     </Compile>
+    <Compile Include="fmrCadUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmrCadUsuario.Designer.cs">
+      <DependentUpon>fmrCadUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmrCadTipoPreco.resx">
       <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmrCadUsuario.resx">
+      <DependentUpon>fmrCadUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmrLogin.resx">
       <DependentUpon>fmrLogin.cs</DependentUpon>

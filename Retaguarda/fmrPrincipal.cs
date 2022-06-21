@@ -28,5 +28,18 @@ namespace Retaguarda
             fmrCadTipoPreco f = new fmrCadTipoPreco();
             f.ShowDialog();
         }
+        public fmrPrincipal(String Login, String NomeCompleto)
+        {
+            InitializeComponent();
+            sslTelaPrincipal.Text = "Acessado por: "+ NomeCompleto +" | Usuario: "+ Login;
+            statusStrip1.Refresh();
+            fmrLogin.ActiveForm.Visible = false;
+        }
+
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmrCadUsuario f = new fmrCadUsuario();
+            f.ShowDialog();
+        }
     }
 }
