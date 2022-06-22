@@ -50,6 +50,7 @@ namespace Retaguarda
                     CarregarDgvPesquisa();
                     Util.LimparCamposGenerico(gpbCadastro);
                     btnCancelar.Enabled = false;
+
                 }
                 catch 
                 {
@@ -91,6 +92,8 @@ namespace Retaguarda
                     Util.LimparCamposGenerico(gpbCadastro);
                     btnCancelar.Enabled = false;
                     btnExcluir.Enabled = false;
+                    btnCadastrar.Visible = true;
+                    btnAlterar.Visible = false;
                 }
                 catch
                 {
@@ -102,37 +105,42 @@ namespace Retaguarda
         }
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (txtId.Text == "")
+            if (Util.PerguntaAntesExclusao())
             {
-                Util.ExibirMsg(Util.TipoMsg.Erro);
-                sslTipoPreco.Text = "Não foi possivel realizar a exclusão!";
-                statusStrip1.Refresh();
-            }
-            else
-            {
-                BehaviorFmrCadTipoPreco rep = new BehaviorFmrCadTipoPreco();
-                sslTipoPreco.Text = "Inativando o Tipo de Preço, aguarde...";
-                statusStrip1.Refresh();
-
-                int Ativo = 0;
-                int Id = Convert.ToInt32(txtId.Text);
-
-                try
-                {
-                    rep.InativarTipoPreco(Ativo, Id);
-                    sslTipoPreco.Text = "Dados Inativados com Sucesso!!";
-                    statusStrip1.Refresh();
-                    Util.ExibirMsg(Util.TipoMsg.Sucesso);
-                    CarregarDgvPesquisa();
-                    Util.LimparCamposGenerico(gpbCadastro);
-                    btnCancelar.Enabled = false;
-                    btnExcluir.Enabled = false;
-                }
-                catch
+                if (txtId.Text == "")
                 {
                     Util.ExibirMsg(Util.TipoMsg.Erro);
-                    sslTipoPreco.Text = "Não foi possivel inativar os dados!";
+                    sslTipoPreco.Text = "Não foi possivel realizar a exclusão!";
                     statusStrip1.Refresh();
+                }
+                else
+                {
+                    BehaviorFmrCadTipoPreco rep = new BehaviorFmrCadTipoPreco();
+                    sslTipoPreco.Text = "Inativando o Tipo de Preço, aguarde...";
+                    statusStrip1.Refresh();
+
+                    int Ativo = 0;
+                    int Id = Convert.ToInt32(txtId.Text);
+
+                    try
+                    {
+                        rep.InativarTipoPreco(Ativo, Id);
+                        sslTipoPreco.Text = "Dados Inativados com Sucesso!!";
+                        statusStrip1.Refresh();
+                        Util.ExibirMsg(Util.TipoMsg.Sucesso);
+                        CarregarDgvPesquisa();
+                        Util.LimparCamposGenerico(gpbCadastro);
+                        btnCancelar.Enabled = false;
+                        btnExcluir.Enabled = false;
+                        btnAlterar.Visible = false;
+                        btnCadastrar.Visible = true;
+                    }
+                    catch
+                    {
+                        Util.ExibirMsg(Util.TipoMsg.Erro);
+                        sslTipoPreco.Text = "Não foi possivel inativar os dados!";
+                        statusStrip1.Refresh();
+                    }
                 }
             }
         }
@@ -161,7 +169,14 @@ namespace Retaguarda
                 btnCadastrar.Visible = false;
                 btnAlterar.Visible = true;
                 btnExcluir.Enabled = true;
-                btnCancelar.Enabled = true;
+                if (objSelec.Ativo == "Inativo")
+                {
+                    btnExcluir.Enabled = false;
+                }
+                else
+                {
+                    btnExcluir.Enabled = true;
+                }
 
                 sslTipoPreco.Text = "Carregado na tela os dados do Tipo de Preço "+objSelec.Descricao+" para edição.";
                 statusStrip1.Refresh();

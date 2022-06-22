@@ -48,9 +48,9 @@ namespace Retaguarda
                     }
                     
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Util.ExibirMsg(Util.TipoMsg.Erro);
+                    Util.ExibirMsg(Util.TipoMsg.Erro +"\n"+ ex.Message);
                 }
             }
         }

@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.gpbDados = new System.Windows.Forms.GroupBox();
-            this.gpbPesquisa = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtLogin = new System.Windows.Forms.TextBox();
-            this.txtSenha = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnAlterar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.cbmParceiros = new System.Windows.Forms.ComboBox();
             this.txtReSenha = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbmParceiros = new System.Windows.Forms.ComboBox();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnAlterar = new System.Windows.Forms.Button();
-            this.dgvPesquisa = new System.Windows.Forms.DataGridView();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.gpbPesquisa = new System.Windows.Forms.GroupBox();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.dgvPesquisa = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sslCadUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpbDados.SuspendLayout();
@@ -71,48 +71,56 @@
             this.gpbDados.TabStop = false;
             this.gpbDados.Text = "Usuario";
             // 
-            // gpbPesquisa
+            // btnAlterar
             // 
-            this.gpbPesquisa.Controls.Add(this.txtPesquisar);
-            this.gpbPesquisa.Controls.Add(this.dgvPesquisa);
-            this.gpbPesquisa.Location = new System.Drawing.Point(389, 6);
-            this.gpbPesquisa.Name = "gpbPesquisa";
-            this.gpbPesquisa.Size = new System.Drawing.Size(406, 299);
-            this.gpbPesquisa.TabIndex = 1;
-            this.gpbPesquisa.TabStop = false;
-            this.gpbPesquisa.Text = "Pesquisa";
+            this.btnAlterar.Location = new System.Drawing.Point(256, 217);
+            this.btnAlterar.Name = "btnAlterar";
+            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
+            this.btnAlterar.TabIndex = 10;
+            this.btnAlterar.Text = "Alterar";
+            this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
-            // label1
+            // btnSalvar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 85);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Login:";
+            this.btnSalvar.Location = new System.Drawing.Point(256, 217);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.TabIndex = 9;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // txtLogin
+            // btnExcluir
             // 
-            this.txtLogin.Location = new System.Drawing.Point(112, 82);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(174, 20);
-            this.txtLogin.TabIndex = 1;
+            this.btnExcluir.Location = new System.Drawing.Point(129, 217);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 8;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
-            // txtSenha
+            // btnCancelar
             // 
-            this.txtSenha.Location = new System.Drawing.Point(112, 117);
-            this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(174, 20);
-            this.txtSenha.TabIndex = 3;
+            this.btnCancelar.Location = new System.Drawing.Point(8, 217);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // label2
+            // cbmParceiros
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Senha:";
+            this.cbmParceiros.DisplayMember = "-1";
+            this.cbmParceiros.FormattingEnabled = true;
+            this.cbmParceiros.Location = new System.Drawing.Point(51, 45);
+            this.cbmParceiros.Name = "cbmParceiros";
+            this.cbmParceiros.Size = new System.Drawing.Size(235, 21);
+            this.cbmParceiros.TabIndex = 6;
+            this.cbmParceiros.Text = "-Selecione o parceiro-";
+            this.cbmParceiros.ValueMember = "-1";
             // 
             // txtReSenha
             // 
@@ -130,56 +138,56 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Re-senha:";
             // 
-            // cbmParceiros
+            // txtSenha
             // 
-            this.cbmParceiros.DisplayMember = "-1";
-            this.cbmParceiros.FormattingEnabled = true;
-            this.cbmParceiros.Location = new System.Drawing.Point(51, 45);
-            this.cbmParceiros.Name = "cbmParceiros";
-            this.cbmParceiros.Size = new System.Drawing.Size(235, 21);
-            this.cbmParceiros.TabIndex = 6;
-            this.cbmParceiros.Text = "-Selecione o parceiro-";
-            this.cbmParceiros.ValueMember = "-1";
+            this.txtSenha.Location = new System.Drawing.Point(112, 117);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(174, 20);
+            this.txtSenha.TabIndex = 3;
             // 
-            // btnCancelar
+            // label2
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(8, 217);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 7;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(48, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Senha:";
             // 
-            // btnExcluir
+            // txtLogin
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(129, 217);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 8;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.txtLogin.Location = new System.Drawing.Point(112, 82);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(174, 20);
+            this.txtLogin.TabIndex = 1;
+            this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
-            // btnSalvar
+            // label1
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(256, 217);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 9;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Login:";
             // 
-            // btnAlterar
+            // gpbPesquisa
             // 
-            this.btnAlterar.Location = new System.Drawing.Point(256, 217);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 10;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
+            this.gpbPesquisa.Controls.Add(this.txtPesquisar);
+            this.gpbPesquisa.Controls.Add(this.dgvPesquisa);
+            this.gpbPesquisa.Location = new System.Drawing.Point(389, 6);
+            this.gpbPesquisa.Name = "gpbPesquisa";
+            this.gpbPesquisa.Size = new System.Drawing.Size(406, 299);
+            this.gpbPesquisa.TabIndex = 1;
+            this.gpbPesquisa.TabStop = false;
+            this.gpbPesquisa.Text = "Pesquisa";
+            // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(25, 29);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(305, 20);
+            this.txtPesquisar.TabIndex = 12;
             // 
             // dgvPesquisa
             // 
@@ -192,13 +200,6 @@
             this.dgvPesquisa.Size = new System.Drawing.Size(393, 237);
             this.dgvPesquisa.TabIndex = 11;
             this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
-            // 
-            // txtPesquisar
-            // 
-            this.txtPesquisar.Location = new System.Drawing.Point(25, 29);
-            this.txtPesquisar.Name = "txtPesquisar";
-            this.txtPesquisar.Size = new System.Drawing.Size(305, 20);
-            this.txtPesquisar.TabIndex = 12;
             // 
             // statusStrip1
             // 

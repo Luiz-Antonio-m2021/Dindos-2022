@@ -12,5 +12,6 @@ namespace Model
         public string NomeRazao { get; set; }
         public String Logon { get; set; }
         public String Ativo { get; set; }
+        public String Senha { get; set; }
     }
 }

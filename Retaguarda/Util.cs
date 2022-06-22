@@ -24,7 +24,7 @@ namespace Retaguarda
         }
         public static bool PerguntaAntesExclusao()
         {
-            if (MessageBox.Show(UtilMensagens.Msg.MensagemErroExclusao, UtilMensagens.Msg.TituloAviso, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(UtilMensagens.Msg.MensagemConfirmaExclusao, UtilMensagens.Msg.TituloAviso, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 return true;
             }

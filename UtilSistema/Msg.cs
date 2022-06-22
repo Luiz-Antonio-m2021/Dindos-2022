@@ -30,6 +30,8 @@ namespace UtilMensagens
             public static string MensagemPerguntaExcluir = "Deseja realmente do fundo do seu coração excluir este registro?";
             public static string MensagemErroExclusao = "Eu sei que você quer excluir, mas não deu certo, tenta novamente depois de tirar seu nome do SERASA.";
 
+            public static String MensagemConfirmaExclusao = "Deseja Realmente Excluir este cadastro? \n - Ele ficará inativo até que Salve alguma alteração nele.";
+
 
 
             public static string TituloSucesso = "Sucesso";
