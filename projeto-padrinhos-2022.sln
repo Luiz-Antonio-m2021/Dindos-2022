@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1927
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retaguarda", "Retaguarda\Retaguarda.csproj", "{8D92CEEA-51C5-4E67-BF5D-D4A5DA85CC74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "Retaguarda\View.csproj", "{8D92CEEA-51C5-4E67-BF5D-D4A5DA85CC74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{7227524C-123B-4A46-9141-63DEC74EB044}"
 EndProject

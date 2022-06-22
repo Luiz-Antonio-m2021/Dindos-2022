@@ -46,61 +46,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fmrCadParceiroNegocio.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadParceiroNegocio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrCadParceiroNegocio.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadParceiroNegocio.Designer.cs">
       <DependentUpon>fmrCadParceiroNegocio.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmrCadTipoPreco.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadTipoPreco.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrCadTipoPreco.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadTipoPreco.Designer.cs">
       <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmrCadUsuario.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrCadUsuario.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrCadUsuario.Designer.cs">
       <DependentUpon>fmrCadUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmrLogin.cs">
+    <Compile Include="Retaguarda\Forms\fmrLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrLogin.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrLogin.Designer.cs">
       <DependentUpon>fmrLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmrPesquisa.cs">
+    <Compile Include="Retaguarda\Forms\fmrPesquisa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrPesquisa.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrPesquisa.Designer.cs">
       <DependentUpon>fmrPesquisa.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmrPrincipal.cs">
+    <Compile Include="Retaguarda\Forms\fmrPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmrPrincipal.Designer.cs">
+    <Compile Include="Retaguarda\Forms\fmrPrincipal.Designer.cs">
       <DependentUpon>fmrPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
-    <EmbeddedResource Include="fmrCadParceiroNegocio.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrCadParceiroNegocio.resx">
       <DependentUpon>fmrCadParceiroNegocio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmrCadTipoPreco.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrCadTipoPreco.resx">
       <DependentUpon>fmrCadTipoPreco.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmrCadUsuario.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrCadUsuario.resx">
       <DependentUpon>fmrCadUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmrLogin.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrLogin.resx">
       <DependentUpon>fmrLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmrPesquisa.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrPesquisa.resx">
       <DependentUpon>fmrPesquisa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmrPrincipal.resx">
+    <EmbeddedResource Include="Retaguarda\Forms\fmrPrincipal.resx">
       <DependentUpon>fmrPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
