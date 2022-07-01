@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -45,6 +48,11 @@
     <Compile Include="BehavioFmrLogin.cs" />
     <Compile Include="BehaviorCadUsuario.cs" />
     <Compile Include="BehaviorFmrCadTipoPreco.cs" />
+    <Compile Include="Projeto\Base\ARepositorio.cs" />
+    <Compile Include="Projeto\Base\IRepositorio.cs" />
+    <Compile Include="Projeto\Base\RepositorioFactory.cs" />
+    <Compile Include="Projeto\Implementacao\RepositorioUsuario.cs" />
+    <Compile Include="Projeto\Interface\IRepositorioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +60,9 @@
       <Project>{7227524c-123b-4a46-9141-63dec74eb044}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

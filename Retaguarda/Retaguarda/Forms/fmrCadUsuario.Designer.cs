@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.gpbDados = new System.Windows.Forms.GroupBox();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -43,6 +42,11 @@
             this.gpbPesquisa = new System.Windows.Forms.GroupBox();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.dgvPesquisa = new System.Windows.Forms.DataGridView();
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLogon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNomeRazao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAtivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Senha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sslCadUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpbDados.SuspendLayout();
@@ -53,7 +57,6 @@
             // 
             // gpbDados
             // 
-            this.gpbDados.Controls.Add(this.btnAlterar);
             this.gpbDados.Controls.Add(this.btnSalvar);
             this.gpbDados.Controls.Add(this.btnExcluir);
             this.gpbDados.Controls.Add(this.btnCancelar);
@@ -71,16 +74,6 @@
             this.gpbDados.TabStop = false;
             this.gpbDados.Text = "Usuario";
             // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Location = new System.Drawing.Point(256, 217);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 10;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
-            // 
             // btnSalvar
             // 
             this.btnSalvar.Location = new System.Drawing.Point(256, 217);
@@ -89,7 +82,7 @@
             this.btnSalvar.TabIndex = 9;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.EventoSalvarAtualizarUsuario);
             // 
             // btnExcluir
             // 
@@ -191,15 +184,62 @@
             // 
             // dgvPesquisa
             // 
+            this.dgvPesquisa.AllowUserToAddRows = false;
             this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPesquisa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colId,
+            this.colLogon,
+            this.colNomeRazao,
+            this.colAtivo,
+            this.Senha});
             this.dgvPesquisa.Location = new System.Drawing.Point(6, 56);
             this.dgvPesquisa.MultiSelect = false;
             this.dgvPesquisa.Name = "dgvPesquisa";
             this.dgvPesquisa.ReadOnly = true;
+            this.dgvPesquisa.RowHeadersVisible = false;
             this.dgvPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPesquisa.Size = new System.Drawing.Size(393, 237);
             this.dgvPesquisa.TabIndex = 11;
             this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "Id";
+            this.colId.HeaderText = "ID";
+            this.colId.Name = "colId";
+            this.colId.ReadOnly = true;
+            this.colId.Width = 50;
+            // 
+            // colLogon
+            // 
+            this.colLogon.DataPropertyName = "Logon";
+            this.colLogon.HeaderText = "Logon";
+            this.colLogon.Name = "colLogon";
+            this.colLogon.ReadOnly = true;
+            // 
+            // colNomeRazao
+            // 
+            this.colNomeRazao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNomeRazao.DataPropertyName = "NomeRazao";
+            this.colNomeRazao.HeaderText = "Nome Razão";
+            this.colNomeRazao.Name = "colNomeRazao";
+            this.colNomeRazao.ReadOnly = true;
+            // 
+            // colAtivo
+            // 
+            this.colAtivo.DataPropertyName = "AtivoProxy";
+            this.colAtivo.HeaderText = "Status";
+            this.colAtivo.Name = "colAtivo";
+            this.colAtivo.ReadOnly = true;
+            this.colAtivo.Width = 50;
+            // 
+            // Senha
+            // 
+            this.Senha.DataPropertyName = "Senha";
+            this.Senha.HeaderText = "Senha";
+            this.Senha.Name = "Senha";
+            this.Senha.ReadOnly = true;
+            this.Senha.Visible = false;
             // 
             // statusStrip1
             // 
@@ -242,7 +282,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gpbDados;
-        private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnCancelar;
@@ -258,5 +297,10 @@
         private System.Windows.Forms.TextBox txtPesquisar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel sslCadUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLogon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNomeRazao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAtivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Senha;
     }
 }

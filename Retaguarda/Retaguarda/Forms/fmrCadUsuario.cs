@@ -9,90 +9,138 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Repository;
 using Model;
+using Repository.Projeto.Base;
 
 namespace Retaguarda
 {
     public partial class fmrCadUsuario : Form
     {
+        #region Propriedades
+
+        private Boolean NovoUsuario { get; set; }
+
+        private UsuarioPNVO Usuario { get; set; }
+
+        #endregion
+
         public fmrCadUsuario()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
+            this.NovoUsuario = true;
+
+            this.Usuario = new UsuarioPNVO();
+
+            this.AlterarStatusBotoes();
+
+            this.dgvPesquisa.AutoGenerateColumns = false;
+        }
+
+        private void MapearCamposParaObjeto()
+        {
+            this.Usuario.Id = Convert.ToInt32(cbmParceiros.SelectedValue);
+            this.Usuario.Logon = txtLogin.Text;
+            this.Usuario.Senha = txtSenha.Text;
+        }
+
+        private void MapearObjetoParaCampo()
+        {
+            cbmParceiros.SelectedValue = this.Usuario.Id.GetValueOrDefault();
+            txtLogin.Text = this.Usuario.Logon;
+            txtSenha.Text = this.Usuario.Senha;
+            txtReSenha.Text = this.Usuario.Senha;
+        }
+
+        private void LimparUsuarioTela()
+        {
+            this.NovoUsuario = true;
+
+            this.Usuario = new UsuarioPNVO();
+        }
+
+        private void VerificaUsuarioInativo()
+        {
+            if (!this.Usuario.Ativo)
+            {
+                DialogResult resultado = MessageBox.Show(this, "Deseja ativar o usuário selecionado?", "Ativar usuário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (DialogResult.Yes.Equals(resultado))
+                    this.Usuario.Ativo = true;
+            }
+        }
+
+        private void AlterarStatusBotoes()
+        {
+            this.btnSalvar.Enabled = true;
+            this.btnCancelar.Enabled = true;            
+            this.btnExcluir.Enabled = !this.NovoUsuario;
+            this.cbmParceiros.Enabled = this.NovoUsuario;
         }
 
         #region Eventos
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private void EventoSalvarAtualizarUsuario(object sender, EventArgs e)
         {
-            if (ValidarCampos())
+            try
             {
-                sslCadUsuario.Text = "Salvando os dados, aguarde...";
-                statusStrip1.Refresh();
-                int Id = Convert.ToInt32(cbmParceiros.SelectedValue);
-                String Login = txtLogin.Text;
-                String Senha = txtSenha.Text;
-                try
-                {
-                    BehaviorCadUsuario rep = new BehaviorCadUsuario();
-                    bool ret = rep.CadastrarUsuario(Id, Login, Senha);
-                    if (ret)
-                    {
-                        Util.LimparCamposGenerico(gpbDados);
-                        sslCadUsuario.Text = "Cadastro de Usuario Realizado com sucesso!";
-                        statusStrip1.Refresh();
-                        btnCancelar.Enabled = false;
-                        Util.ExibirMsg(Util.TipoMsg.Sucesso);
-                    }
-                    else
-                    {
-                        Util.ExibirMsg(Util.TipoMsg.Erro);
-                        sslCadUsuario.Text = "Erro ao realizar o cadastro de usuario!";
-                        statusStrip1.Refresh();
-                    }  
-                }
-                catch
-                {
-                    Util.ExibirMsg(Util.TipoMsg.Erro);
-                    sslCadUsuario.Text = "Erro ao realizar o cadastro de usuario!";
-                    statusStrip1.Refresh();
-                }
-            }
-        }
+                this.ValidarCampos();
 
-        private void btnAlterar_Click(object sender, EventArgs e)
-        {
-            if (ValidarCampos())
+                this.MapearCamposParaObjeto();
+
+                if (this.NovoUsuario)
+                {
+                    this.Usuario.Ativo = true;                    
+                }
+                else
+                {
+                    this.VerificaUsuarioInativo();
+                }
+
+                RepositorioFactory.Instancia.RepositorioUsuario.SalvarOuAtualizaUsuario(this.Usuario);
+
+                //Util.LimparCamposGenerico(gpbDados);
+                //sslCadUsuario.Text = "Cadastro de Usuario Realizado com sucesso!";
+                //statusStrip1.Refresh();
+                //btnCancelar.Enabled = false;
+                //Util.ExibirMsg(Util.TipoMsg.Sucesso);
+
+                this.LimparUsuarioTela();
+
+                this.MapearObjetoParaCampo();
+
+                this.CarregarDgvPesquisa();
+
+                this.AlterarStatusBotoes();
+            }
+            catch (OperationCanceledException ex)
             {
-                sslCadUsuario.Text = "Salvando os dados, aguarde...";
+                Util.ExibirMsg(Util.TipoMsg.CampoObg + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.Erro + ex.Message);
+
+                sslCadUsuario.Text = "Erro ao realizar o cadastro de usuario!";
+
                 statusStrip1.Refresh();
-                int Id = Convert.ToInt32(cbmParceiros.SelectedValue);
-                String Login = txtLogin.Text;
-                String Senha = txtSenha.Text;
-                try
-                {
-                    BehaviorCadUsuario rep = new BehaviorCadUsuario();
-                    rep.AlterarUsuario(Id, Login, Senha);
-                    Util.LimparCamposGenerico(gpbDados);
-                    sslCadUsuario.Text = "Cadastro de Usuario Alterado com sucesso!";
-                    statusStrip1.Refresh();
-                    btnExcluir.Enabled = false;
-                    btnCancelar.Enabled = false;
-                    btnAlterar.Visible = false;
-                    btnSalvar.Visible = true;
-                    Util.ExibirMsg(Util.TipoMsg.Sucesso);
-                    CarregarCbmParceiroNegocio();
-                    CarregarDgvPesquisa();
-                }
-                catch
-                {
-                    Util.ExibirMsg(Util.TipoMsg.Erro);
-                    sslCadUsuario.Text = "Erro ao Alterar o cadastro de usuario!";
-                    statusStrip1.Refresh();
-                }
             }
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (OperationCanceledException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
             if (Util.PerguntaAntesExclusao())
             {
                 if (cbmParceiros.SelectedIndex == -1)
@@ -111,11 +159,10 @@ namespace Retaguarda
                         sslCadUsuario.Text = "Cadastro de Usuario Alterado com sucesso!";
                         statusStrip1.Refresh();
                         btnExcluir.Enabled = false;
-                        btnCancelar.Enabled = false;
-                        btnAlterar.Visible = false;
-                        btnSalvar.Visible = true;
+                        btnCancelar.Enabled = false;                        
+                        btnSalvar.Enabled = true;
                         Util.ExibirMsg(Util.TipoMsg.Sucesso);
-                        CarregarCbmParceiroNegocio();
+                        //CarregarCbmParceiroNegocio();
                         CarregarDgvPesquisa();
                     }
                     catch (Exception ex)
@@ -131,51 +178,42 @@ namespace Retaguarda
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Util.LimparCamposGenerico(gpbDados);
-            CarregarCbmParceiroNegocio();
-
-            btnAlterar.Visible = false;
+            //CarregarCbmParceiroNegocio();
+                        
             btnCancelar.Enabled = false;
             btnExcluir.Enabled = false;
             btnSalvar.Visible = true;
+
+            this.LimparUsuarioTela();
+
+            this.MapearObjetoParaCampo();
         }
 
         private void fmrCadUsuario_Load(object sender, EventArgs e)
         {
             CarregarDgvPesquisa();
+
             CarregarCbmParceiroNegocio();
-            btnAlterar.Visible = false;
-            btnCancelar.Enabled = false;
-            btnExcluir.Enabled = false;
         }
 
         private void dgvPesquisa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPesquisa.RowCount > 0)
+            if (dgvPesquisa.SelectedRows.Count > 0)
             {
-                UsuarioPNVO objSlect = (UsuarioPNVO)dgvPesquisa.CurrentRow.DataBoundItem;
-                List<UsuarioPNVO> lst = new List<UsuarioPNVO>();
-                lst.Add(objSlect);
+                UsuarioPNVO objSlect = (UsuarioPNVO)dgvPesquisa.SelectedRows[0].DataBoundItem as UsuarioPNVO;
 
-                //Para carregar o ComboBox somente com o PN que foi selecionado na DGV
-                cbmParceiros.DisplayMember = "NomeRazao";
-                cbmParceiros.ValueMember = "Id";
-                cbmParceiros.DataSource = lst;
+                this.Usuario = new UsuarioPNVO();
 
-                txtLogin.Text = objSlect.Logon;
-                txtSenha.Text = objSlect.Senha;
-                txtReSenha.Text = objSlect.Senha;
+                this.Usuario.Id = objSlect.Id;
+                this.Usuario.Ativo = objSlect.Ativo;
+                this.Usuario.Senha = objSlect.Senha;
+                this.Usuario.Logon = objSlect.Logon;
 
-                btnSalvar.Visible = false;
-                btnAlterar.Visible = true;
-                btnCancelar.Enabled = true;
-                if (objSlect.Ativo == "Inativo")
-                {
-                    btnExcluir.Enabled = false;
-                }
-                else
-                {
-                    btnExcluir.Enabled = true;
-                }
+                this.MapearObjetoParaCampo();
+
+                this.NovoUsuario = false;                
+
+                this.AlterarStatusBotoes();
 
                 sslCadUsuario.Text = "Carregado na tela os dados do Usuario " + objSlect.Logon + " para edição.";
                 statusStrip1.Refresh();
@@ -198,44 +236,54 @@ namespace Retaguarda
 
         #region Metodos
 
-        private Boolean ValidarCampos()
+        private void ValidarCampos()
         {
-            bool ret = true;
-            string campos = "";
+            String mensagem = String.Empty;
 
             if (cbmParceiros.SelectedIndex == -1)
             {
-                ret = false;
-                campos = "- O campo Parceiro de Negócio não foi preenchido. \n";
-            }
-            if (txtLogin.Text.Trim() == "")
-            {
-                ret = false;
-                campos += "- O campo Login não foi preenchido. \n";
-            }
-            if (txtSenha.Text.Trim() == "")
-            {
-                ret = false;
-                campos += "- O campo senha não foi preenchido. \n";
-            }
-            if (txtReSenha.Text.Trim() == "")
-            {
-                ret = false;
-                campos += "- O campo repetir senha não foi informado. \n";
-            }
-            if (txtReSenha.Text.Trim() != txtSenha.Text.Trim())
-            {
-                ret = false;
-                campos += "- A senha informado não bate coma senha informada no campo Re-senha. \n";
-            }
-            if (!ret)
-            {
-                Util.ExibirMsg(campos);
-                sslCadUsuario.Text = "O campos da tela não foram preenchidos corretamente!";
-                statusStrip1.Refresh();
+                mensagem += Environment.NewLine;
+                mensagem += "O campo Parceiro de Negócio não foi preenchido.";
+                //throw new OperationCanceledException("O campo Parceiro de Negócio não foi preenchido.");
             }
 
-            return ret;
+            if (txtLogin.Text.Trim() == "")
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "O campo Login não foi preenchido.";
+                //throw new OperationCanceledException("O campo Login não foi preenchido.");
+            }
+
+            if (txtSenha.Text.Trim() == "")
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "O campo senha não foi preenchido";
+                //throw new OperationCanceledException("O campo senha não foi preenchido");
+            }
+
+            if (txtReSenha.Text.Trim() == "")
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "O campo repetir senha não foi informado";
+                //throw new OperationCanceledException("O campo repetir senha não foi informado");
+            }
+
+
+            if (txtReSenha.Text.Trim() != txtSenha.Text.Trim())
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "A senha informado não bate coma senha informada no campo Re-senha.";
+                //throw new OperationCanceledException("A senha informado não bate coma senha informada no campo Re-senha.");
+            }
+            if (RepositorioFactory.Instancia.RepositorioUsuario.ValidarParceiro(Convert.ToInt64(this.Usuario.Id)))
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "O Parceiro de negócio selecionado ja possui um usuario cadastrado!";
+            }
+            //chamar aqui o repositorio que vai retornar um bool, se existir mostra pro cliente que o parceiro selecionado já tem um usuário (somente em modo de cadastro)
+
+            if (!String.IsNullOrWhiteSpace(mensagem))
+                throw new OperationCanceledException(mensagem);
         }
 
         private void CarregarCbmParceiroNegocio()
@@ -263,10 +311,14 @@ namespace Retaguarda
 
         public void CarregarDgvPesquisa()
         {
-            BehaviorCadUsuario rep = new BehaviorCadUsuario();
-            dgvPesquisa.DataSource = rep.CarregarDgvPesquisa();
+            IEnumerable<UsuarioPNVO> todosUsuario = RepositorioFactory.Instancia.RepositorioUsuario.ConsultaTodos<UsuarioPNVO>();
 
-            Util.VisibilidadeColunaGrid(dgvPesquisa, "Senha", false);
+            dgvPesquisa.DataSource = todosUsuario.ToList();
+
+            //BehaviorCadUsuario rep = new BehaviorCadUsuario();
+            //dgvPesquisa.DataSource = rep.CarregarDgvPesquisa();
+
+            //Util.VisibilidadeColunaGrid(dgvPesquisa, "Senha", false);
         }
 
         #endregion

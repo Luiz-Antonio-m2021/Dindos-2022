@@ -8,10 +8,28 @@ namespace Model
 {
     public class UsuarioPNVO
     {
-        public int Id { get; set; }
+        public long? Id { get; set; }
         public string NomeRazao { get; set; }
-        public String Logon { get; set; }
-        public String Ativo { get; set; }
+        public String Logon { get; set; }        
         public String Senha { get; set; }
+
+        public Boolean Ativo { get; set; }
+
+        public String AtivoProxy
+        {
+            get
+            {
+                //return this.AtivoT ? "ATIVO" : "INATIVO";
+
+                if (this.Ativo)
+                {
+                    return "Ativo";
+                }
+                else
+                {
+                    return "Inativo";
+                }
+            }
+        }
     }
 }

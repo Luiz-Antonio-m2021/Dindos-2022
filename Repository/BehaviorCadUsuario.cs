@@ -104,8 +104,7 @@ namespace Repository
             cmd.CommandText = "SELECT PN.Id, PN.NomeRazao FROM CAD_ParceiroNegocio PN"
                                 + " LEFT JOIN CAD_Usuario US ON PN.Id = US.Id"
                                 +" WHERE PN.Tipo_PN in (1, 7)"
-                                + " AND PN.Ativo = 1"
-                                + " AND US.Id IS NULL"
+                                + " AND PN.Ativo = 1"                                
                                 +" OR US.Ativo = 0";
             cmd.Connection = cn;
 
@@ -162,7 +161,7 @@ namespace Repository
                     objVo.Id = Convert.ToInt32(dr["Id"]);
                     objVo.NomeRazao = dr["NomeRazao"].ToString();
                     objVo.Logon = dr["Logon"].ToString();
-                    objVo.Ativo = Convert.ToBoolean(dr["Ativo"]) == true ? "Ativo" : "Inativo";
+                    //objVo.Ativo = Convert.ToBoolean(dr["Ativo"]) == true ? "Ativo" : "Inativo";
                     objVo.Senha = dr["Senha"].ToString();
 
 
