@@ -114,7 +114,7 @@ namespace Repository
                     objVo.Id = Convert.ToInt32(dr["Id"]);
                     objVo.Descricao = dr["Descricao"].ToString();
                     //objVo.Ativo = dr["Ativo"].ToString() == "true" ? "Ativo" : "Inativo";
-                    objVo.Ativo = Convert.ToBoolean(dr["Ativo"]) == true ? "Ativo" : "Inativo";
+                    //objVo.Ativo = Convert.ToBoolean(dr["Ativo"]) == true ? "Ativo" : "Inativo";
 
                     lstRetorno.Add(objVo);
                 }

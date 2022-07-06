@@ -10,6 +10,21 @@ namespace Model
     {
         public int Id { get; set; }
         public string Descricao { get; set; }
-        public string Ativo { get; set; }
+        public Boolean Ativo { get; set; }
+
+        public String AtivoProxy
+        {
+            get
+            {
+                if (this.Ativo)
+                {
+                    return "Ativo";
+                }
+                else
+                {
+                    return "Inativo";
+                }
+            }
+        }
     }
 }

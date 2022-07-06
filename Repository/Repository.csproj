@@ -51,7 +51,9 @@
     <Compile Include="Projeto\Base\ARepositorio.cs" />
     <Compile Include="Projeto\Base\IRepositorio.cs" />
     <Compile Include="Projeto\Base\RepositorioFactory.cs" />
+    <Compile Include="Projeto\Implementacao\RepositorioTipoPreco.cs" />
     <Compile Include="Projeto\Implementacao\RepositorioUsuario.cs" />
+    <Compile Include="Projeto\Interface\IRepositorioTipoPreco.cs" />
     <Compile Include="Projeto\Interface\IRepositorioUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

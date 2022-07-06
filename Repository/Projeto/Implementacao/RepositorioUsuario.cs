@@ -54,7 +54,8 @@ namespace Repository.Projeto.Implementacao
                             logon = usuario.Logon,
                             senha = usuario.Senha,
                         }, transacao);
-                    }                    
+                    }  
+                    //Alterar Cadastro Existente
                     else
                     {
                         String sql = "UPDATE CAD_Usuario SET Logon = @Logon, Senha = @Senha, Ativo = @ativo WHERE Id = @Id";

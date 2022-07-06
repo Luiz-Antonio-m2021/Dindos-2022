@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.gpbCadastro = new System.Windows.Forms.GroupBox();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtDescricao = new System.Windows.Forms.TextBox();
@@ -39,8 +38,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sslTipoPreco = new System.Windows.Forms.ToolStripStatusLabel();
             this.gpbPesquisa = new System.Windows.Forms.GroupBox();
-            this.dgvPesquisa = new System.Windows.Forms.DataGridView();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
+            this.dgvPesquisa = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gpbCadastro.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.gpbPesquisa.SuspendLayout();
@@ -49,9 +51,8 @@
             // 
             // gpbCadastro
             // 
-            this.gpbCadastro.Controls.Add(this.btnAlterar);
             this.gpbCadastro.Controls.Add(this.txtId);
-            this.gpbCadastro.Controls.Add(this.btnCadastrar);
+            this.gpbCadastro.Controls.Add(this.btnSalvar);
             this.gpbCadastro.Controls.Add(this.btnExcluir);
             this.gpbCadastro.Controls.Add(this.btnCancelar);
             this.gpbCadastro.Controls.Add(this.txtDescricao);
@@ -63,16 +64,6 @@
             this.gpbCadastro.TabStop = false;
             this.gpbCadastro.Text = "Tipo de Preço";
             // 
-            // btnAlterar
-            // 
-            this.btnAlterar.Location = new System.Drawing.Point(267, 131);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btnAlterar.TabIndex = 10;
-            this.btnAlterar.Text = "Alterar";
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
-            // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(342, 18);
@@ -82,15 +73,15 @@
             this.txtId.TabIndex = 9;
             this.txtId.Visible = false;
             // 
-            // btnCadastrar
+            // btnSalvar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(267, 131);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrar.TabIndex = 8;
-            this.btnCadastrar.Text = "Salvar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            this.btnSalvar.Location = new System.Drawing.Point(267, 131);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.TabIndex = 8;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.SalvarOuAtualizarCadastro);
             // 
             // btnExcluir
             // 
@@ -155,24 +146,53 @@
             this.gpbPesquisa.TabStop = false;
             this.gpbPesquisa.Text = "Pesaquisa";
             // 
-            // dgvPesquisa
-            // 
-            this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPesquisa.Location = new System.Drawing.Point(8, 72);
-            this.dgvPesquisa.MultiSelect = false;
-            this.dgvPesquisa.Name = "dgvPesquisa";
-            this.dgvPesquisa.ReadOnly = true;
-            this.dgvPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPesquisa.Size = new System.Drawing.Size(312, 214);
-            this.dgvPesquisa.TabIndex = 0;
-            this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
-            // 
             // txtPesquisa
             // 
             this.txtPesquisa.Location = new System.Drawing.Point(30, 28);
             this.txtPesquisa.Name = "txtPesquisa";
             this.txtPesquisa.Size = new System.Drawing.Size(266, 20);
             this.txtPesquisa.TabIndex = 1;
+            // 
+            // dgvPesquisa
+            // 
+            this.dgvPesquisa.AllowUserToAddRows = false;
+            this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPesquisa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Descricao,
+            this.Ativo});
+            this.dgvPesquisa.Location = new System.Drawing.Point(8, 61);
+            this.dgvPesquisa.MultiSelect = false;
+            this.dgvPesquisa.Name = "dgvPesquisa";
+            this.dgvPesquisa.ReadOnly = true;
+            this.dgvPesquisa.RowHeadersVisible = false;
+            this.dgvPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPesquisa.Size = new System.Drawing.Size(312, 214);
+            this.dgvPesquisa.TabIndex = 0;
+            this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 60;
+            // 
+            // Descricao
+            // 
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Width = 145;
+            // 
+            // Ativo
+            // 
+            this.Ativo.DataPropertyName = "AtivoProxy";
+            this.Ativo.HeaderText = "Status";
+            this.Ativo.Name = "Ativo";
+            this.Ativo.ReadOnly = true;
             // 
             // fmrCadTipoPreco
             // 
@@ -201,16 +221,18 @@
 
         private System.Windows.Forms.GroupBox gpbCadastro;
         private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel sslTipoPreco;
         private System.Windows.Forms.GroupBox gpbPesquisa;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.DataGridView dgvPesquisa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ativo;
     }
 }

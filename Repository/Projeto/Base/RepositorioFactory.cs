@@ -9,7 +9,7 @@ namespace Repository.Projeto.Base
 
         public IRepositorioUsuario RepositorioUsuario { get; set; }
 
-        //public IRepositorioTipoPreco RepositorioTipoPreco { get; set; }
+        public IRepositorioTipoPreco RepositorioTipoPreco { get; set; }
 
         #endregion
 
@@ -33,6 +33,8 @@ namespace Repository.Projeto.Base
         private RepositorioFactory()
         {
             this.RepositorioUsuario = new RepositorioUsuario();
+
+            this.RepositorioTipoPreco = new RepositorioTipoPreco();
         }
 
         #endregion

@@ -36,6 +36,7 @@ namespace Retaguarda
             this.dgvPesquisa.AutoGenerateColumns = false;
         }
 
+        //Metodo para popular objeto com os campos da tela
         private void MapearCamposParaObjeto()
         {
             this.Usuario.Id = Convert.ToInt32(cbmParceiros.SelectedValue);
@@ -43,6 +44,7 @@ namespace Retaguarda
             this.Usuario.Senha = txtSenha.Text;
         }
 
+        //Metodo para popular os campos da tela com os dados vindo do Objeto
         private void MapearObjetoParaCampo()
         {
             cbmParceiros.SelectedValue = this.Usuario.Id.GetValueOrDefault();
@@ -58,6 +60,7 @@ namespace Retaguarda
             this.Usuario = new UsuarioPNVO();
         }
 
+        //Metodo que pergunta se ao alterar o cadastro deseja ativar novamente o cadastro
         private void VerificaUsuarioInativo()
         {
             if (!this.Usuario.Ativo)
@@ -69,6 +72,21 @@ namespace Retaguarda
             }
         }
 
+        private void ConfirmaExcluirUsuario()
+        {
+            DialogResult resultado = MessageBox.Show(this, "Deseja realmente inativar o usuário selecionado?", "Inativar usuário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (DialogResult.Yes.Equals(resultado))
+            {
+                this.Usuario.Ativo = false;
+            }
+            if (DialogResult.No.Equals(resultado))
+            {
+                throw new OperationCanceledException("Operação cancelada pelo ususario!");
+            }
+        }
+
+        //Metodo que controla o estado dos botões
         private void AlterarStatusBotoes()
         {
             this.btnSalvar.Enabled = true;
@@ -98,12 +116,6 @@ namespace Retaguarda
 
                 RepositorioFactory.Instancia.RepositorioUsuario.SalvarOuAtualizaUsuario(this.Usuario);
 
-                //Util.LimparCamposGenerico(gpbDados);
-                //sslCadUsuario.Text = "Cadastro de Usuario Realizado com sucesso!";
-                //statusStrip1.Refresh();
-                //btnCancelar.Enabled = false;
-                //Util.ExibirMsg(Util.TipoMsg.Sucesso);
-
                 this.LimparUsuarioTela();
 
                 this.MapearObjetoParaCampo();
@@ -111,6 +123,10 @@ namespace Retaguarda
                 this.CarregarDgvPesquisa();
 
                 this.AlterarStatusBotoes();
+
+                Util.ExibirMsg(Util.TipoMsg.Sucesso);
+                sslCadUsuario.Text = "Cadastro de Usuario Realizado com sucesso!";
+                statusStrip1.Refresh();
             }
             catch (OperationCanceledException ex)
             {
@@ -120,7 +136,7 @@ namespace Retaguarda
             {
                 Util.ExibirMsg(Util.TipoMsg.Erro + ex.Message);
 
-                sslCadUsuario.Text = "Erro ao realizar o cadastro de usuario!";
+                sslCadUsuario.Text = "Erro ao Salvar o cadastro de usuario!";
 
                 statusStrip1.Refresh();
             }
@@ -130,48 +146,37 @@ namespace Retaguarda
         {
             try
             {
+                this.ValidarCampos();
 
+                this.MapearCamposParaObjeto();
+
+                this.ConfirmaExcluirUsuario();
+
+                RepositorioFactory.Instancia.RepositorioUsuario.SalvarOuAtualizaUsuario(this.Usuario);
+
+                this.LimparUsuarioTela();
+
+                this.MapearObjetoParaCampo();
+
+                this.CarregarDgvPesquisa();
+
+                this.AlterarStatusBotoes();
+
+                Util.ExibirMsg(Util.TipoMsg.Sucesso);
+                sslCadUsuario.Text = "Exclusão de Usuario Realizado com sucesso!";
+                statusStrip1.Refresh();
             }
             catch (OperationCanceledException ex)
             {
-
+                Util.ExibirMsg(Util.TipoMsg.CampoObg + ex.Message);
+                sslCadUsuario.Text = "Verifique os campos obrigatórios e tente novamente.";
+                statusStrip1.Refresh();
             }
             catch (Exception ex)
             {
-
-                throw;
-            }
-            if (Util.PerguntaAntesExclusao())
-            {
-                if (cbmParceiros.SelectedIndex == -1)
-                {
-                    MessageBox.Show("Não foi selecionado nenhum parceiro para exclusão so Usuario!");
-                }
-                else
-                {
-                    int id = Convert.ToInt32(cbmParceiros.SelectedValue);
-
-                    try
-                    {
-                        BehaviorCadUsuario rep = new BehaviorCadUsuario();
-                        rep.ExcluirUsuario(id);
-                        Util.LimparCamposGenerico(gpbDados);
-                        sslCadUsuario.Text = "Cadastro de Usuario Alterado com sucesso!";
-                        statusStrip1.Refresh();
-                        btnExcluir.Enabled = false;
-                        btnCancelar.Enabled = false;                        
-                        btnSalvar.Enabled = true;
-                        Util.ExibirMsg(Util.TipoMsg.Sucesso);
-                        //CarregarCbmParceiroNegocio();
-                        CarregarDgvPesquisa();
-                    }
-                    catch (Exception ex)
-                    {
-                        Util.ExibirMsg(Util.TipoMsg.Erro + "\n" + ex.Message);
-                        sslCadUsuario.Text = "Erro ao Alterar o cadastro de usuario!";
-                        statusStrip1.Refresh();
-                    }
-                }
+                Util.ExibirMsg(Util.TipoMsg.Erro + "\n" + ex.Message);
+                sslCadUsuario.Text = "Erro ao excluir o cadastro de usuario!";
+                statusStrip1.Refresh();
             }
         }
 
