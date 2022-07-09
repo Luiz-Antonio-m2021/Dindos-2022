@@ -1,6 +1,7 @@
 ﻿using Model;
 using Repository.Projeto.Base;
 using System;
+using System.Collections.Generic;
 
 namespace Repository.Projeto.Interface
 {
@@ -8,7 +9,7 @@ namespace Repository.Projeto.Interface
     {
         void SalvarAtualizarTipoPreco(TipoPrecoVO tipoPreco);
 
-
+        IEnumerable<T> ConsultaTodosAtivos<T>();
 
     }
 }

@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CidadeVO.cs" />
     <Compile Include="conn.cs" />
+    <Compile Include="EstadoVO.cs" />
+    <Compile Include="ParceiroNegocioVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoPrecoVO.cs" />
     <Compile Include="UsuarioPNVO.cs" />

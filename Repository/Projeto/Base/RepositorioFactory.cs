@@ -11,6 +11,10 @@ namespace Repository.Projeto.Base
 
         public IRepositorioTipoPreco RepositorioTipoPreco { get; set; }
 
+        public IRepositorioCidadeEstado RepositorioCidadeEstado { get; set; }
+
+        public IRepositorioParceiroNegocio RepositorioParceiroNegocio { get; set; }
+
         #endregion
 
         #region Singleton
@@ -35,6 +39,10 @@ namespace Repository.Projeto.Base
             this.RepositorioUsuario = new RepositorioUsuario();
 
             this.RepositorioTipoPreco = new RepositorioTipoPreco();
+
+            this.RepositorioCidadeEstado = new RepositorioCidadeEstado();
+
+            this.RepositorioParceiroNegocio = new RepositorioParceiroNegocio();
         }
 
         #endregion

@@ -66,5 +66,20 @@ namespace Repository.Projeto.Implementacao
 
         }
 
+        public IEnumerable<T> ConsultaTodosAtivos<T>()
+        {
+            using (SqlConnection conexao = new SqlConnection(this.StringConexao))
+            {
+                conexao.Open();
+
+                using (SqlTransaction transacao = conexao.BeginTransaction(IsolationLevel.ReadUncommitted))
+                {
+                    String sql = @"SELECT * FROM CAD_TipoPreco WHERE Ativo = 1";
+
+                    return conexao.Query<T>(sql, transaction: transacao);
+                }
+            }
+        }
+
     }
 }
