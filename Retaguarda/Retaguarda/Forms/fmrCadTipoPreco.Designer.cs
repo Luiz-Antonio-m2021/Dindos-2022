@@ -170,6 +170,7 @@
             this.dgvPesquisa.Size = new System.Drawing.Size(312, 214);
             this.dgvPesquisa.TabIndex = 0;
             this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            this.dgvPesquisa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPesquisa_CellFormatting);
             // 
             // Id
             // 

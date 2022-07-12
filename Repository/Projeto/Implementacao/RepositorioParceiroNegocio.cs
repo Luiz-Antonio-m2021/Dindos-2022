@@ -35,9 +35,9 @@ namespace Repository.Projeto.Implementacao
                                 	PN.CEP,
                                 	PN.Ativo,
                                 	PN.Tipo_PN AS TipoPN,
-                                	AP.Id AS IdPrecoAPrazo,
+                                	AP.IdTipoPreco AS IdPrecoAPrazo,
                                 	AP.Ativo AS PrazoAtivo,
-                                	AV.Id AS IdPrecoAVista,
+                                	AV.IdTipoPreco AS IdPrecoAVista,
                                 	AV.Ativo AS VistaAtivo,
                                 	CID.Id AS IdCidade,
                                 	CID.Descricao AS DescCidade,
@@ -66,7 +66,7 @@ namespace Repository.Projeto.Implementacao
                     {
                         String sql = @"INSERT INTO CAD_ParceiroNegocio (IdCidade, NomeRazao, CpfCnpj, RGIE, Telefone, Logradouro, Bairro, Ativo, Tipo_PN, Email, CEP)
                                          VALUES 
-                                        (6151, 'Luiz', @CpfCnpj, @RGIE, @Telefone, @Logradouro, @Bairro, @Ativo, @Tipo_PN, @Email, @CEP)";
+                                        (@IdCidade, @NomeRazao, @CpfCnpj, @RGIE, @Telefone, @Logradouro, @Bairro, @Ativo, @Tipo_PN, @Email, @CEP)";
 
                         con.Execute(sql, new {
                             IdCidade = parceiro.IdCidade,
@@ -82,11 +82,17 @@ namespace Repository.Projeto.Implementacao
                             CEP = parceiro.CEP
                         }, trans);
 
-                        trans.Commit();
+                        //trans.Commit();
 
-                        sql = @"SELECT TOP(1) Id FROM CAD_ParceiroNegocio ORDER BY Id DESC";
-                        object id = con.QueryFirstOrDefault(sql, trans);
-                        parceiro.Id = Convert.ToInt16(id);
+                        sql = @"SELECT TOP(1) * FROM CAD_ParceiroNegocio ORDER BY Id DESC";
+                        //ParceiroNegocioVO newPN = new ParceiroNegocioVO();
+                        IEnumerable<ParceiroNegocioVO> newPN = con.Query<ParceiroNegocioVO>(sql, transaction: trans);
+                        List<ParceiroNegocioVO> lstNewPN = newPN.ToList();
+                        
+                        for (int i = 0; i < lstNewPN.Count(); i++)
+                        {
+                            parceiro.Id = lstNewPN[i].Id;
+                        }
 
                         if (parceiro.IdPrecoAPrazo > 0)
                         {
@@ -129,6 +135,7 @@ namespace Repository.Projeto.Implementacao
 
                         con.Execute(sql, new
                         {
+                            Id = parceiro.Id,
                             IdCidade = parceiro.IdCidade,
                             NomeRazao = parceiro.NomeRazao,
                             CpfCnpj = parceiro.CpfCnpj,
@@ -151,6 +158,25 @@ namespace Repository.Projeto.Implementacao
                                 Id = parceiro.Id
                             }, trans);
                         }
+                        if (parceiro.PrazoAtivo)
+                        {
+                            string sqlConsultaExistePrecoCadastrado = "SELECT id FROM CAD_PN_TipoAPrazo WHERE Id = @Id";
+
+                            object prazo = con.QueryFirstOrDefault(sqlConsultaExistePrecoCadastrado, new {
+                                Id = parceiro.Id,
+                            }, trans);
+
+                            if (prazo == null)
+                            {
+                                sql = @"INSERT INTO CAD_PN_TipoAPrazo VALUES (@Id, @IdPrecoAPrazo, 1)";
+
+                                con.Execute(sql, new
+                                {
+                                    Id = parceiro.Id,
+                                    IdPrecoAPrazo = parceiro.IdPrecoAPrazo
+                                }, trans);
+                            }
+                        }
                         if (!parceiro.VistaAtivo)
                         {
                             sql = @"UPDATE CAD_PN_TipoAVista SET Ativo = @Ativo WHERE Id = @Id";
@@ -160,6 +186,26 @@ namespace Repository.Projeto.Implementacao
                                 Ativo = parceiro.VistaAtivo,
                                 Id = parceiro.Id
                             }, trans);
+                        }
+                        if (parceiro.VistaAtivo)
+                        {
+                            string sqlConsultaExistePrecoCadastrado = "SELECT * FROM CAD_PN_TipoAVista WHERE Id = @Id";
+
+                            object vista = con.QueryFirstOrDefault(sqlConsultaExistePrecoCadastrado, new
+                            {
+                                Id = parceiro.Id,
+                            }, trans);
+
+                            if (vista == null)
+                            {
+                                sql = @"INSERT INTO CAD_PN_TipoAVista VALUES (@Id, @IdPrecoAVista, 1)";
+
+                                con.Execute(sql, new
+                                {
+                                    Id = parceiro.Id,
+                                    IdPrecoAVista = parceiro.IdPrecoAVista
+                                }, trans);
+                            }
                         }
                     }
 

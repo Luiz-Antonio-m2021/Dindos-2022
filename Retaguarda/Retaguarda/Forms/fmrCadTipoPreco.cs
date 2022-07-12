@@ -44,6 +44,14 @@ namespace Retaguarda
             CarregarDgvPesquisa();
         }
 
+        private void dgvPesquisa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.Value.Equals("Inativo"))
+            {
+                dgvPesquisa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+        }
+
         private void SalvarOuAtualizarCadastro(object sender, EventArgs e)
         {
             try
@@ -250,6 +258,7 @@ namespace Retaguarda
             }
 
         }
+
 
         #endregion
 

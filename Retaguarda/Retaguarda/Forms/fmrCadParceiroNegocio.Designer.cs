@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPesquisa = new System.Windows.Forms.TabPage();
+            this.tabCadastrar = new System.Windows.Forms.TabPage();
             this.txtRgIe = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCpfCnpj = new System.Windows.Forms.TextBox();
@@ -65,7 +66,7 @@
             this.tabTipoPNVista = new System.Windows.Forms.TabPage();
             this.cbmTipoPrecoVista = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPesquisar = new System.Windows.Forms.TabPage();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPesquisa = new System.Windows.Forms.DataGridView();
@@ -75,6 +76,7 @@
             this.txtCEP = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAtivoProxy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrazoAtivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVistaAtivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNomeRazao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,12 +91,11 @@
             this.colLogradouro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBairro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAtivoProxy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTipoPN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdPrecoAPrazo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIdPrecoAVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
-            this.tabPesquisa.SuspendLayout();
+            this.tabCadastrar.SuspendLayout();
             this.tabDados.SuspendLayout();
             this.tabDadosPN.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -102,38 +103,38 @@
             this.groupBox1.SuspendLayout();
             this.tabTipoPNPrazo.SuspendLayout();
             this.tabTipoPNVista.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPesquisar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisa)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPesquisa);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabCadastrar);
+            this.tabControl1.Controls.Add(this.tabPesquisar);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(808, 467);
             this.tabControl1.TabIndex = 0;
             // 
-            // tabPesquisa
+            // tabCadastrar
             // 
-            this.tabPesquisa.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPesquisa.Controls.Add(this.txtRgIe);
-            this.tabPesquisa.Controls.Add(this.label3);
-            this.tabPesquisa.Controls.Add(this.txtCpfCnpj);
-            this.tabPesquisa.Controls.Add(this.label4);
-            this.tabPesquisa.Controls.Add(this.txtNomeRazao);
-            this.tabPesquisa.Controls.Add(this.label);
-            this.tabPesquisa.Controls.Add(this.txtId);
-            this.tabPesquisa.Controls.Add(this.label2);
-            this.tabPesquisa.Controls.Add(this.tabDados);
-            this.tabPesquisa.Location = new System.Drawing.Point(4, 22);
-            this.tabPesquisa.Name = "tabPesquisa";
-            this.tabPesquisa.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPesquisa.Size = new System.Drawing.Size(800, 441);
-            this.tabPesquisa.TabIndex = 0;
-            this.tabPesquisa.Text = "Cadastrar";
+            this.tabCadastrar.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabCadastrar.Controls.Add(this.txtRgIe);
+            this.tabCadastrar.Controls.Add(this.label3);
+            this.tabCadastrar.Controls.Add(this.txtCpfCnpj);
+            this.tabCadastrar.Controls.Add(this.label4);
+            this.tabCadastrar.Controls.Add(this.txtNomeRazao);
+            this.tabCadastrar.Controls.Add(this.label);
+            this.tabCadastrar.Controls.Add(this.txtId);
+            this.tabCadastrar.Controls.Add(this.label2);
+            this.tabCadastrar.Controls.Add(this.tabDados);
+            this.tabCadastrar.Location = new System.Drawing.Point(4, 22);
+            this.tabCadastrar.Name = "tabCadastrar";
+            this.tabCadastrar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCadastrar.Size = new System.Drawing.Size(800, 441);
+            this.tabCadastrar.TabIndex = 0;
+            this.tabCadastrar.Text = "Cadastrar";
             // 
             // txtRgIe
             // 
@@ -466,18 +467,18 @@
             this.label14.TabIndex = 4;
             this.label14.Text = "Tipo de Preço A Vista";
             // 
-            // tabPage2
+            // tabPesquisar
             // 
-            this.tabPage2.Controls.Add(this.txtPesquisar);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.dgvPesquisa);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(800, 441);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Pesquisar";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPesquisar.Controls.Add(this.txtPesquisar);
+            this.tabPesquisar.Controls.Add(this.label1);
+            this.tabPesquisar.Controls.Add(this.dgvPesquisa);
+            this.tabPesquisar.Location = new System.Drawing.Point(4, 22);
+            this.tabPesquisar.Name = "tabPesquisar";
+            this.tabPesquisar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPesquisar.Size = new System.Drawing.Size(800, 441);
+            this.tabPesquisar.TabIndex = 1;
+            this.tabPesquisar.Text = "Pesquisar";
+            this.tabPesquisar.UseVisualStyleBackColor = true;
             // 
             // txtPesquisar
             // 
@@ -501,6 +502,7 @@
             this.dgvPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPesquisa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
+            this.colAtivoProxy,
             this.colPrazoAtivo,
             this.colVistaAtivo,
             this.colNomeRazao,
@@ -515,16 +517,25 @@
             this.colLogradouro,
             this.colBairro,
             this.colCEP,
-            this.colAtivoProxy,
             this.colTipoPN,
             this.colIdPrecoAPrazo,
             this.colIdPrecoAVista});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPesquisa.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPesquisa.Location = new System.Drawing.Point(6, 73);
             this.dgvPesquisa.Name = "dgvPesquisa";
             this.dgvPesquisa.RowHeadersVisible = false;
             this.dgvPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPesquisa.Size = new System.Drawing.Size(788, 362);
             this.dgvPesquisa.TabIndex = 0;
+            this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            this.dgvPesquisa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPesquisa_CellFormatting);
             // 
             // btnCancelar
             // 
@@ -577,6 +588,12 @@
             this.colId.DataPropertyName = "Id";
             this.colId.HeaderText = "Código";
             this.colId.Name = "colId";
+            // 
+            // colAtivoProxy
+            // 
+            this.colAtivoProxy.DataPropertyName = "AtivoProxy";
+            this.colAtivoProxy.HeaderText = "Status";
+            this.colAtivoProxy.Name = "colAtivoProxy";
             // 
             // colPrazoAtivo
             // 
@@ -664,12 +681,6 @@
             this.colCEP.HeaderText = "CEP";
             this.colCEP.Name = "colCEP";
             // 
-            // colAtivoProxy
-            // 
-            this.colAtivoProxy.DataPropertyName = "AtivoProxy";
-            this.colAtivoProxy.HeaderText = "Status";
-            this.colAtivoProxy.Name = "colAtivoProxy";
-            // 
             // colTipoPN
             // 
             this.colTipoPN.DataPropertyName = "TipoPN";
@@ -703,8 +714,8 @@
             this.Name = "fmrCadParceiroNegocio";
             this.Text = "Cadastro de Pareiro de Negocio";
             this.tabControl1.ResumeLayout(false);
-            this.tabPesquisa.ResumeLayout(false);
-            this.tabPesquisa.PerformLayout();
+            this.tabCadastrar.ResumeLayout(false);
+            this.tabCadastrar.PerformLayout();
             this.tabDados.ResumeLayout(false);
             this.tabDadosPN.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -717,8 +728,8 @@
             this.tabTipoPNPrazo.PerformLayout();
             this.tabTipoPNVista.ResumeLayout(false);
             this.tabTipoPNVista.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabPesquisar.ResumeLayout(false);
+            this.tabPesquisar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisa)).EndInit();
             this.ResumeLayout(false);
 
@@ -727,8 +738,8 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPesquisa;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabCadastrar;
+        private System.Windows.Forms.TabPage tabPesquisar;
         private System.Windows.Forms.TabControl tabDados;
         private System.Windows.Forms.TabPage tabDadosPN;
         private System.Windows.Forms.TabPage tabTipoPNPrazo;
@@ -773,6 +784,7 @@
         private System.Windows.Forms.TextBox txtCEP;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAtivoProxy;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrazoAtivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVistaAtivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomeRazao;
@@ -787,7 +799,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colLogradouro;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBairro;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCEP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAtivoProxy;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipoPN;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdPrecoAPrazo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdPrecoAVista;

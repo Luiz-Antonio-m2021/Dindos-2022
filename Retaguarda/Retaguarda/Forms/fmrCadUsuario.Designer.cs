@@ -201,6 +201,7 @@
             this.dgvPesquisa.Size = new System.Drawing.Size(393, 237);
             this.dgvPesquisa.TabIndex = 11;
             this.dgvPesquisa.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPesquisa_CellDoubleClick);
+            this.dgvPesquisa.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPesquisa_CellFormatting);
             // 
             // colId
             // 

@@ -237,6 +237,16 @@ namespace Retaguarda
             }
         }
 
+        private void dgvPesquisa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            if (e.Value != null && e.Value.Equals("Inativo"))
+            {
+                dgvPesquisa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+
+        }
+
         #endregion
 
         #region Metodos
@@ -327,5 +337,7 @@ namespace Retaguarda
         }
 
         #endregion
+
+
     }
 }

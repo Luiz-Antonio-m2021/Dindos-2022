@@ -114,18 +114,149 @@ namespace Retaguarda
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.ValidarCampos();
 
+                this.MapearCamposParaObjeto();
+
+                this.CalculaTipoPN();
+
+                this.ConfirmaExcluirParceiro();
+
+                RepositorioFactory.Instancia.RepositorioParceiroNegocio.SalvarOuAtualizarParceiro(this.Parceiro);
+
+                this.LimparUsuarioTela();
+
+                this.MapearObjetoParaCampo();
+
+                this.CarregarDGVPesquisa();
+
+                this.AlterarStatusBotoes();
+
+                Util.ExibirMsg(Util.TipoMsg.Sucesso);
+            }
+            catch (OperationCanceledException ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.CampoObg + Environment.NewLine + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this.LimparUsuarioTela();
 
+            this.MapearObjetoParaCampo();
         }
 
+        private void dgvPesquisa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPesquisa.SelectedRows.Count > 0)
+            {
+                ParceiroNegocioVO objSelect = (ParceiroNegocioVO)dgvPesquisa.SelectedRows[0].DataBoundItem as ParceiroNegocioVO;
+
+                this.Parceiro.Ativo = objSelect.Ativo;
+                this.Parceiro.Id = objSelect.Id;
+                this.Parceiro.IdCidade = objSelect.IdCidade;
+                this.Parceiro.IdEstado = objSelect.IdEstado;
+                this.VerificarTipoPN(objSelect.TipoPN);
+                this.Parceiro.NomeRazao = objSelect.NomeRazao;
+                this.Parceiro.CpfCnpj = objSelect.CpfCnpj;
+                this.Parceiro.RGIE = objSelect.RGIE;
+                this.Parceiro.Telefone = objSelect.Telefone;
+                this.Parceiro.Email = objSelect.Email;
+                this.Parceiro.Logradouro = objSelect.Logradouro;
+                this.Parceiro.Bairro = objSelect.Bairro;
+                this.Parceiro.CEP = objSelect.CEP;
+                this.Parceiro.IdPrecoAPrazo = objSelect.IdPrecoAPrazo;
+                this.Parceiro.IdPrecoAVista = objSelect.IdPrecoAVista;
+
+                this.MapearObjetoParaCampo();
+
+                this.NovoParceiro = false;
+
+                this.AlterarStatusBotoes();
+
+                tabControl1.SelectTab("tabCadastrar");
+               
+            }
+        }
+
+        private void dgvPesquisa_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.Value.Equals("Inativo"))
+            {
+                dgvPesquisa.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+        }
 
         #endregion
 
         #region Métodos
+
+        private void VerificarTipoPN(int TipoPN)
+        {
+            if (TipoPN == 1)
+            {
+                this.Parceiro.VistaAtivo = false;
+                this.Parceiro.PrazoAtivo = false;
+                this.Parceiro.FuncionarioAtivo = true;
+            }
+            if (TipoPN == 2)
+            {
+                this.Parceiro.VistaAtivo = false;
+                this.Parceiro.PrazoAtivo = true;
+                this.Parceiro.FuncionarioAtivo = false;
+            }
+            if (TipoPN == 3)
+            {
+                this.Parceiro.VistaAtivo = false;
+                this.Parceiro.PrazoAtivo = true;
+                this.Parceiro.FuncionarioAtivo = true;
+            }
+            if (TipoPN == 4)
+            {
+                this.Parceiro.VistaAtivo = true;
+                this.Parceiro.PrazoAtivo = false;
+                this.Parceiro.FuncionarioAtivo = false;
+            }
+            if (TipoPN == 5)
+            {
+                this.Parceiro.VistaAtivo = true;
+                this.Parceiro.PrazoAtivo = false;
+                this.Parceiro.FuncionarioAtivo = true;
+            }
+            if (TipoPN == 6)
+            {
+                this.Parceiro.VistaAtivo = true;
+                this.Parceiro.PrazoAtivo = true;
+                this.Parceiro.FuncionarioAtivo = false;
+            }
+            if (TipoPN == 7)
+            {
+                this.Parceiro.VistaAtivo = true;
+                this.Parceiro.PrazoAtivo = true;
+                this.Parceiro.FuncionarioAtivo = true;
+            }
+        }
+
+        private void ConfirmaExcluirParceiro()
+        {
+            DialogResult resultado = MessageBox.Show(this, "Deseja realmente inativar o Parceiro de Negócio selecionado?", "Inativar Parceiro de Negócio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (DialogResult.Yes.Equals(resultado))
+            {
+                this.Parceiro.Ativo = false;
+            }
+            if (DialogResult.No.Equals(resultado))
+            {
+                throw new OperationCanceledException("Operação cancelada pelo ususario!");
+            }
+        }
 
         public void ValidarCampos()
         {
@@ -191,6 +322,11 @@ namespace Retaguarda
                 mensagem += Environment.NewLine;
                 mensagem += "O campo Preço a Vista não foi preenchido.";
             }
+            if (!chkAVista.Checked && !chkAPrazo.Checked && !chkUsuario.Checked)
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "Selecione ao menos um tipo de parceiro.";
+            }
 
             if (!String.IsNullOrWhiteSpace(mensagem))
                 throw new OperationCanceledException(mensagem);
@@ -228,6 +364,9 @@ namespace Retaguarda
             Parceiro.Email = txtEmail.Text;
             Parceiro.CEP = txtCEP.Text;
             Parceiro.IdCidade = Convert.ToInt16(cbmCidade.SelectedValue);
+            Parceiro.PrazoAtivo = chkAPrazo.Checked;
+            Parceiro.VistaAtivo = chkAVista.Checked;
+            Parceiro.FuncionarioAtivo = chkUsuario.Checked;
             Parceiro.IdPrecoAPrazo = Convert.ToInt16(cbmTipoPrecoPrazo.SelectedValue);
             Parceiro.IdPrecoAVista = Convert.ToInt16(cbmTipoPrecoVista.SelectedValue);
         }
@@ -244,8 +383,12 @@ namespace Retaguarda
             txtEmail.Text = Parceiro.Email;
             txtCEP.Text = Parceiro.CEP;
             cbmCidade.SelectedValue = Parceiro.IdCidade;
-            cbmTipoPrecoPrazo.SelectedValue = Parceiro.IdPrecoAPrazo.GetValueOrDefault();
-            cbmEstado.SelectedValue = Parceiro.IdPrecoAVista.GetValueOrDefault();
+            cbmEstado.SelectedValue = Parceiro.IdEstado;
+            chkAPrazo.Checked = Parceiro.PrazoAtivo;
+            chkAVista.Checked = Parceiro.VistaAtivo;
+            chkUsuario.Checked = Parceiro.FuncionarioAtivo;
+            cbmTipoPrecoPrazo.SelectedValue = Convert.ToInt16(Parceiro.IdPrecoAPrazo.GetValueOrDefault());
+            cbmTipoPrecoVista.SelectedValue = Convert.ToInt16(Parceiro.IdPrecoAVista.GetValueOrDefault());
         }
 
         public void CalculaTipoPN()
@@ -312,10 +455,12 @@ namespace Retaguarda
             IEnumerable<ParceiroNegocioVO> parceiro = RepositorioFactory.Instancia.RepositorioParceiroNegocio.ConsultaTodos<ParceiroNegocioVO>();
 
             dgvPesquisa.DataSource = parceiro.ToList();
+
         }
+
 
         #endregion
 
-        
+
     }
 }

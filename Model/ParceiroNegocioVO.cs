@@ -38,14 +38,14 @@ namespace Model
 
         public String CEP { get; set; }
 
-        //Sempre recebe valor 2
-        public int APrazo { get; set; }
+        ////Sempre recebe valor 2
+        //public int APrazo { get; set; }
 
-        //Sempre revebe o valor 4
-        public int AVista { get; set; }
+        ////Sempre revebe o valor 4
+        //public int AVista { get; set; }
 
-        //Sempre Recebe o valor 1
-        public int Funcionario { get; set; }
+        ////Sempre Recebe o valor 1
+        //public int Funcionario { get; set; }
 
         public long? IdPrecoAPrazo { get; set; }
 
@@ -54,6 +54,8 @@ namespace Model
         public long? IdPrecoAVista { get; set; }
 
         public Boolean VistaAtivo { get; set; }
+
+        public Boolean FuncionarioAtivo { get; set; }
 
         public String AtivoProxy
         {
