@@ -27,9 +27,6 @@ namespace Retaguarda
 
             dgvPesquisa.AutoGenerateColumns = false;
 
-            this.tabDados.TabPages.RemoveByKey("tabTipoPNPrazo");
-            this.tabDados.TabPages.RemoveByKey("tabTipoPNVista");
-
             this.CarregarCombosTipoPreco();
             this.CarregarComboEstado();
             this.CarregarDGVPesquisa();
@@ -37,6 +34,9 @@ namespace Retaguarda
             this.Parceiro = new ParceiroNegocioVO();
 
             this.AlterarStatusBotoes();
+            
+            this.tabDados.TabPages.RemoveByKey("tabTipoPNPrazo");
+            this.tabDados.TabPages.RemoveByKey("tabTipoPNVista");
         }
 
         #region Eventos
@@ -148,41 +148,56 @@ namespace Retaguarda
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.LimparUsuarioTela();
+            try
+            {
+                this.LimparUsuarioTela();
 
-            this.MapearObjetoParaCampo();
+                this.MapearObjetoParaCampo();
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
+            }
+            
         }
 
         private void dgvPesquisa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPesquisa.SelectedRows.Count > 0)
+            try
             {
-                ParceiroNegocioVO objSelect = (ParceiroNegocioVO)dgvPesquisa.SelectedRows[0].DataBoundItem as ParceiroNegocioVO;
+                if (dgvPesquisa.SelectedRows.Count > 0)
+                {
+                    ParceiroNegocioVO objSelect = (ParceiroNegocioVO)dgvPesquisa.SelectedRows[0].DataBoundItem as ParceiroNegocioVO;
 
-                this.Parceiro.Ativo = objSelect.Ativo;
-                this.Parceiro.Id = objSelect.Id;
-                this.Parceiro.IdCidade = objSelect.IdCidade;
-                this.Parceiro.IdEstado = objSelect.IdEstado;
-                this.VerificarTipoPN(objSelect.TipoPN);
-                this.Parceiro.NomeRazao = objSelect.NomeRazao;
-                this.Parceiro.CpfCnpj = objSelect.CpfCnpj;
-                this.Parceiro.RGIE = objSelect.RGIE;
-                this.Parceiro.Telefone = objSelect.Telefone;
-                this.Parceiro.Email = objSelect.Email;
-                this.Parceiro.Logradouro = objSelect.Logradouro;
-                this.Parceiro.Bairro = objSelect.Bairro;
-                this.Parceiro.CEP = objSelect.CEP;
-                this.Parceiro.IdPrecoAPrazo = objSelect.IdPrecoAPrazo;
-                this.Parceiro.IdPrecoAVista = objSelect.IdPrecoAVista;
+                    this.Parceiro.Ativo = objSelect.Ativo;
+                    this.Parceiro.Id = objSelect.Id;
+                    this.Parceiro.IdCidade = objSelect.IdCidade;
+                    this.Parceiro.IdEstado = objSelect.IdEstado;
+                    this.VerificarTipoPN(objSelect.TipoPN);
+                    this.Parceiro.NomeRazao = objSelect.NomeRazao;
+                    this.Parceiro.CpfCnpj = objSelect.CpfCnpj;
+                    this.Parceiro.RGIE = objSelect.RGIE;
+                    this.Parceiro.Telefone = objSelect.Telefone;
+                    this.Parceiro.Email = objSelect.Email;
+                    this.Parceiro.Logradouro = objSelect.Logradouro;
+                    this.Parceiro.Bairro = objSelect.Bairro;
+                    this.Parceiro.CEP = objSelect.CEP;
+                    this.Parceiro.IdPrecoAPrazo = objSelect.IdPrecoAPrazo;
+                    this.Parceiro.IdPrecoAVista = objSelect.IdPrecoAVista;
 
-                this.MapearObjetoParaCampo();
+                    this.MapearObjetoParaCampo();
 
-                this.NovoParceiro = false;
+                    this.NovoParceiro = false;
 
-                this.AlterarStatusBotoes();
+                    this.AlterarStatusBotoes();
 
-                tabControl1.SelectTab("tabCadastrar");
-               
+                    tabControl1.SelectTab("tabCadastrar");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
             }
         }
 
@@ -363,32 +378,43 @@ namespace Retaguarda
             Parceiro.Bairro = txtBairro.Text;
             Parceiro.Email = txtEmail.Text;
             Parceiro.CEP = txtCEP.Text;
-            Parceiro.IdCidade = Convert.ToInt16(cbmCidade.SelectedValue);
+            Parceiro.IdCidade = (long?)cbmCidade.SelectedValue;
             Parceiro.PrazoAtivo = chkAPrazo.Checked;
             Parceiro.VistaAtivo = chkAVista.Checked;
             Parceiro.FuncionarioAtivo = chkUsuario.Checked;
-            Parceiro.IdPrecoAPrazo = Convert.ToInt16(cbmTipoPrecoPrazo.SelectedValue);
-            Parceiro.IdPrecoAVista = Convert.ToInt16(cbmTipoPrecoVista.SelectedValue);
+            Parceiro.IdPrecoAPrazo = (long?)cbmTipoPrecoPrazo.SelectedValue;
+            Parceiro.IdPrecoAVista = (long?)cbmTipoPrecoVista.SelectedValue;
         }
 
         private void MapearObjetoParaCampo()
         {
-            txtId.Text = Parceiro.Id.ToString();
-            txtNomeRazao.Text =  Parceiro.NomeRazao;
-            txtCpfCnpj.Text = Parceiro.CpfCnpj;
-            txtRgIe.Text = Parceiro.RGIE;
-            txtTelefone.Text = Parceiro.Telefone;
-            txtLogradouro.Text = Parceiro.Logradouro;
-            txtBairro.Text = Parceiro.Bairro;
-            txtEmail.Text = Parceiro.Email;
-            txtCEP.Text = Parceiro.CEP;
-            cbmCidade.SelectedValue = Parceiro.IdCidade;
-            cbmEstado.SelectedValue = Parceiro.IdEstado;
-            chkAPrazo.Checked = Parceiro.PrazoAtivo;
-            chkAVista.Checked = Parceiro.VistaAtivo;
-            chkUsuario.Checked = Parceiro.FuncionarioAtivo;
-            cbmTipoPrecoPrazo.SelectedValue = Convert.ToInt16(Parceiro.IdPrecoAPrazo.GetValueOrDefault());
-            cbmTipoPrecoVista.SelectedValue = Convert.ToInt16(Parceiro.IdPrecoAVista.GetValueOrDefault());
+            try
+            {
+                txtId.Text = Parceiro.Id.ToString();
+                txtNomeRazao.Text = Parceiro.NomeRazao;
+                txtCpfCnpj.Text = Parceiro.CpfCnpj;
+                txtRgIe.Text = Parceiro.RGIE;
+                txtTelefone.Text = Parceiro.Telefone;
+                txtLogradouro.Text = Parceiro.Logradouro;
+                txtBairro.Text = Parceiro.Bairro;
+                txtEmail.Text = Parceiro.Email;
+                txtCEP.Text = Parceiro.CEP;
+                cbmCidade.SelectedValue = Parceiro.IdCidade.GetValueOrDefault();
+                cbmEstado.SelectedValue = Parceiro.IdEstado.GetValueOrDefault();
+                chkAPrazo.Checked = Parceiro.PrazoAtivo;
+                chkAVista.Checked = Parceiro.VistaAtivo;
+                chkUsuario.Checked = Parceiro.FuncionarioAtivo;
+
+                this.tabTipoPNPrazo.Refresh();
+
+                cbmTipoPrecoPrazo.SelectedValue = this.Parceiro.IdPrecoAPrazo.GetValueOrDefault();
+                cbmTipoPrecoVista.SelectedValue = this.Parceiro.IdPrecoAVista.GetValueOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg("Não foi possivel Mapear o objeto para o campo. \n" + ex.Message);
+            }
+            
         }
 
         public void CalculaTipoPN()
@@ -413,16 +439,15 @@ namespace Retaguarda
 
         private void CarregarCombosTipoPreco()
         {
-            IEnumerable<TipoPrecoVO> TipoPreco = RepositorioFactory.Instancia.RepositorioTipoPreco.ConsultaTodosAtivos<TipoPrecoVO>();
+            IEnumerable<TipoPrecoVO> todosTiposPreco = RepositorioFactory.Instancia.RepositorioTipoPreco.ConsultaTodosAtivos<TipoPrecoVO>();
 
             cbmTipoPrecoPrazo.DisplayMember = "Descricao";
             cbmTipoPrecoPrazo.ValueMember = "Id";
-            cbmTipoPrecoPrazo.DataSource = TipoPreco.ToList();
+            cbmTipoPrecoPrazo.DataSource = todosTiposPreco.ToList();
             
-
             cbmTipoPrecoVista.DisplayMember = "Descricao";
             cbmTipoPrecoVista.ValueMember = "Id";
-            cbmTipoPrecoVista.DataSource = TipoPreco.ToList();
+            cbmTipoPrecoVista.DataSource = todosTiposPreco.ToList();
         }
 
         private void CarregarComboEstado()

@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model.Base;
+using System;
 
 namespace Model
 {
-    public class EstadoVO
-    {
-        public int Id { get; set; }
-
+    public class EstadoVO : Entity
+    {   
         public String Descricao { get; set; }
-
-        public Boolean Ativo { get; set; }
-
     }
 }

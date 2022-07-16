@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model.Base;
+using System;
 
 namespace Model
 {
-    public class CidadeVO : EstadoVO
+    public class CidadeVO : Entity
     {
         public int IdEstado { get; set; }
+
+        public String Descricao { get; set; }
     }
 }

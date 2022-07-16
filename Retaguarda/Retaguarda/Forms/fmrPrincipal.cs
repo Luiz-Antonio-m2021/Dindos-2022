@@ -20,13 +20,18 @@ namespace Retaguarda
         private void parceiroNegocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmrCadParceiroNegocio f = new fmrCadParceiroNegocio();
-            f.ShowDialog();
+            f.MdiParent = this;
+
+            f.Show();
         }
 
         private void tipoDePreçoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmrCadTipoPreco f = new fmrCadTipoPreco();
-            f.ShowDialog();
+
+            f.MdiParent = this;
+
+            f.Show();
         }
         public fmrPrincipal(String Login, String NomeCompleto)
         {
@@ -39,7 +44,10 @@ namespace Retaguarda
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmrCadUsuario f = new fmrCadUsuario();
-            f.ShowDialog();
+
+            f.MdiParent = this;
+
+            f.Show();
         }
     }
 }

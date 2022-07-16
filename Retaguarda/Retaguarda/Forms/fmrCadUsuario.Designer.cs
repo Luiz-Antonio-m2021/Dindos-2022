@@ -49,6 +49,7 @@
             this.Senha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sslCadUsuario = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label4 = new System.Windows.Forms.Label();
             this.gpbDados.SuspendLayout();
             this.gpbPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisa)).BeginInit();
@@ -57,9 +58,10 @@
             // 
             // gpbDados
             // 
-            this.gpbDados.Controls.Add(this.btnSalvar);
-            this.gpbDados.Controls.Add(this.btnExcluir);
-            this.gpbDados.Controls.Add(this.btnCancelar);
+            this.gpbDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gpbDados.Controls.Add(this.label4);
             this.gpbDados.Controls.Add(this.cbmParceiros);
             this.gpbDados.Controls.Add(this.txtReSenha);
             this.gpbDados.Controls.Add(this.label3);
@@ -69,14 +71,15 @@
             this.gpbDados.Controls.Add(this.label1);
             this.gpbDados.Location = new System.Drawing.Point(6, 6);
             this.gpbDados.Name = "gpbDados";
-            this.gpbDados.Size = new System.Drawing.Size(372, 300);
+            this.gpbDados.Size = new System.Drawing.Size(373, 297);
             this.gpbDados.TabIndex = 0;
             this.gpbDados.TabStop = false;
             this.gpbDados.Text = "Usuario";
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(256, 217);
+            this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalvar.Location = new System.Drawing.Point(304, 313);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 9;
@@ -86,7 +89,8 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(129, 217);
+            this.btnExcluir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExcluir.Location = new System.Drawing.Point(223, 313);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 8;
@@ -96,7 +100,8 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(8, 217);
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(142, 313);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 7;
@@ -106,26 +111,30 @@
             // 
             // cbmParceiros
             // 
+            this.cbmParceiros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbmParceiros.DisplayMember = "-1";
             this.cbmParceiros.FormattingEnabled = true;
-            this.cbmParceiros.Location = new System.Drawing.Point(51, 45);
+            this.cbmParceiros.Location = new System.Drawing.Point(112, 46);
             this.cbmParceiros.Name = "cbmParceiros";
-            this.cbmParceiros.Size = new System.Drawing.Size(235, 21);
+            this.cbmParceiros.Size = new System.Drawing.Size(255, 21);
             this.cbmParceiros.TabIndex = 6;
             this.cbmParceiros.Text = "-Selecione o parceiro-";
             this.cbmParceiros.ValueMember = "-1";
             // 
             // txtReSenha
             // 
+            this.txtReSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReSenha.Location = new System.Drawing.Point(112, 152);
             this.txtReSenha.Name = "txtReSenha";
-            this.txtReSenha.Size = new System.Drawing.Size(174, 20);
+            this.txtReSenha.Size = new System.Drawing.Size(255, 20);
             this.txtReSenha.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(48, 155);
+            this.label3.Location = new System.Drawing.Point(52, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 4;
@@ -133,15 +142,17 @@
             // 
             // txtSenha
             // 
+            this.txtSenha.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSenha.Location = new System.Drawing.Point(112, 117);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(174, 20);
+            this.txtSenha.Size = new System.Drawing.Size(255, 20);
             this.txtSenha.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 120);
+            this.label2.Location = new System.Drawing.Point(67, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 2;
@@ -149,16 +160,18 @@
             // 
             // txtLogin
             // 
+            this.txtLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLogin.Location = new System.Drawing.Point(112, 82);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(174, 20);
+            this.txtLogin.Size = new System.Drawing.Size(255, 20);
             this.txtLogin.TabIndex = 1;
             this.txtLogin.TextChanged += new System.EventHandler(this.txtLogin_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 85);
+            this.label1.Location = new System.Drawing.Point(72, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 0;
@@ -177,7 +190,7 @@
             // 
             // txtPesquisar
             // 
-            this.txtPesquisar.Location = new System.Drawing.Point(25, 29);
+            this.txtPesquisar.Location = new System.Drawing.Point(6, 30);
             this.txtPesquisar.Name = "txtPesquisar";
             this.txtPesquisar.Size = new System.Drawing.Size(305, 20);
             this.txtPesquisar.TabIndex = 12;
@@ -192,7 +205,7 @@
             this.colNomeRazao,
             this.colAtivo,
             this.Senha});
-            this.dgvPesquisa.Location = new System.Drawing.Point(6, 56);
+            this.dgvPesquisa.Location = new System.Drawing.Point(7, 56);
             this.dgvPesquisa.MultiSelect = false;
             this.dgvPesquisa.Name = "dgvPesquisa";
             this.dgvPesquisa.ReadOnly = true;
@@ -246,9 +259,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sslCadUsuario});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 312);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 354);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(807, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -257,14 +270,27 @@
             this.sslCadUsuario.Name = "sslCadUsuario";
             this.sslCadUsuario.Size = new System.Drawing.Size(0, 17);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(2, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Parceiro de Negócio:";
+            // 
             // fmrCadUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 334);
+            this.ClientSize = new System.Drawing.Size(807, 376);
+            this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.gpbPesquisa);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.gpbDados);
+            this.MaximizeBox = false;
             this.Name = "fmrCadUsuario";
             this.Text = "Cadastro de Uuario";
             this.Load += new System.EventHandler(this.fmrCadUsuario_Load);
@@ -303,5 +329,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNomeRazao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAtivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Senha;
+        private System.Windows.Forms.Label label4;
     }
 }

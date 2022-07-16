@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model.Base;
+using System;
 
 namespace Model
 {
-    public class ParceiroNegocioVO
+    public class ParceiroNegocioVO : Entity
     {
-        public long? Id { get; set; }
-
         public String NomeRazao { get; set; }
 
         public String CpfCnpj { get; set; }
 
-        public int IdCidade { get; set; }
+        public long? IdCidade { get; set; }
 
         public String DescCidade { get; set; }
 
-        public int IdEstado { get; set; }
+        public long? IdEstado { get; set; }
 
         public String DescEstado { get; set; }
 
@@ -29,8 +24,6 @@ namespace Model
         public String Logradouro { get; set; }
 
         public String Bairro { get; set; }
-
-        public Boolean Ativo { get; set; }
 
         public int TipoPN { get; set; }
 
@@ -56,20 +49,5 @@ namespace Model
         public Boolean VistaAtivo { get; set; }
 
         public Boolean FuncionarioAtivo { get; set; }
-
-        public String AtivoProxy
-        {
-            get
-            {
-                if (this.Ativo)
-                {
-                    return "Ativo";
-                }
-                else
-                {
-                    return "Inativo";
-                }
-            }
-        }
     }
 }

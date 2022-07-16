@@ -29,13 +29,13 @@ namespace Retaguarda
 
         private void dgvPesquisa_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPesquisa.RowCount > 0)
-            {
-                TipoPrecoVO objSelec = (TipoPrecoVO)dgvPesquisa.CurrentRow.DataBoundItem;
+            //if (dgvPesquisa.RowCount > 0)
+            //{
+            //    TipoPrecoVO objSelec = (TipoPrecoVO)dgvPesquisa.CurrentRow.DataBoundItem;
 
-                int Id = objSelec.Id;
-                string Descricao = objSelec.Descricao;
-            }
+            //    int Id = objSelec.Id;
+            //    string Descricao = objSelec.Descricao;
+            //}
         }
 
     }
