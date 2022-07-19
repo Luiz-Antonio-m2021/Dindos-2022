@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Retaguarda\Forms\fmrCadMercadoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Retaguarda\Forms\fmrCadMercadoria.Designer.cs">
+      <DependentUpon>fmrCadMercadoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Retaguarda\Forms\fmrCadParceiroNegocio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
+    <EmbeddedResource Include="Retaguarda\Forms\fmrCadMercadoria.resx">
+      <DependentUpon>fmrCadMercadoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Retaguarda\Forms\fmrCadParceiroNegocio.resx">
       <DependentUpon>fmrCadParceiroNegocio.cs</DependentUpon>
     </EmbeddedResource>
