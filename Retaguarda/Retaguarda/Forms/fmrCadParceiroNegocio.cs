@@ -351,7 +351,7 @@ namespace Retaguarda
         {
             if (!this.Parceiro.Ativo)
             {
-                DialogResult resultado = MessageBox.Show(this, "Deseja ativar o Parceiro selecionado?", "Ativar usuário", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult resultado = MessageBox.Show(this, "Deseja ativar o Parceiro selecionado?", "Ativar Parceiro de Negócio", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (DialogResult.Yes.Equals(resultado))
                     this.Parceiro.Ativo = true;

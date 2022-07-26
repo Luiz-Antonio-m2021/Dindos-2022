@@ -45,6 +45,10 @@
     <Compile Include="CidadeVO.cs" />
     <Compile Include="conn.cs" />
     <Compile Include="EstadoVO.cs" />
+    <Compile Include="LocalEstoqueVO.cs" />
+    <Compile Include="MercadoriaComboKitVO.cs" />
+    <Compile Include="MercadoriaPrecoVO.cs" />
+    <Compile Include="MercadoriaVO.cs" />
     <Compile Include="ParceiroNegocioVO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoPrecoVO.cs" />

@@ -35,6 +35,7 @@
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sslTelaPrincipal = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mercadoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mercadoriaToolStripMenuItem,
             this.parceiroNegocioToolStripMenuItem,
             this.tipoDePreçoToolStripMenuItem,
             this.usuarioToolStripMenuItem});
@@ -62,21 +64,21 @@
             // parceiroNegocioToolStripMenuItem
             // 
             this.parceiroNegocioToolStripMenuItem.Name = "parceiroNegocioToolStripMenuItem";
-            this.parceiroNegocioToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.parceiroNegocioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.parceiroNegocioToolStripMenuItem.Text = "Parceiro Negocio";
             this.parceiroNegocioToolStripMenuItem.Click += new System.EventHandler(this.parceiroNegocioToolStripMenuItem_Click);
             // 
             // tipoDePreçoToolStripMenuItem
             // 
             this.tipoDePreçoToolStripMenuItem.Name = "tipoDePreçoToolStripMenuItem";
-            this.tipoDePreçoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.tipoDePreçoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tipoDePreçoToolStripMenuItem.Text = "Tipo de Preço";
             this.tipoDePreçoToolStripMenuItem.Click += new System.EventHandler(this.tipoDePreçoToolStripMenuItem_Click);
             // 
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.usuarioToolStripMenuItem.Text = "Usuario";
             this.usuarioToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
@@ -95,6 +97,13 @@
             this.sslTelaPrincipal.Name = "sslTelaPrincipal";
             this.sslTelaPrincipal.Size = new System.Drawing.Size(118, 17);
             this.sslTelaPrincipal.Text = "toolStripStatusLabel1";
+            // 
+            // mercadoriaToolStripMenuItem
+            // 
+            this.mercadoriaToolStripMenuItem.Name = "mercadoriaToolStripMenuItem";
+            this.mercadoriaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mercadoriaToolStripMenuItem.Text = "Mercadoria";
+            this.mercadoriaToolStripMenuItem.Click += new System.EventHandler(this.mercadoriaToolStripMenuItem_Click);
             // 
             // fmrPrincipal
             // 
@@ -126,5 +135,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel sslTelaPrincipal;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mercadoriaToolStripMenuItem;
     }
 }

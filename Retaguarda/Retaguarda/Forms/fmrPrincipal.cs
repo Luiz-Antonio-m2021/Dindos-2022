@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Retaguarda.Retaguarda.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +45,15 @@ namespace Retaguarda
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmrCadUsuario f = new fmrCadUsuario();
+
+            f.MdiParent = this;
+
+            f.Show();
+        }
+
+        private void mercadoriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmrCadMercadoria f = new fmrCadMercadoria();
 
             f.MdiParent = this;
 
