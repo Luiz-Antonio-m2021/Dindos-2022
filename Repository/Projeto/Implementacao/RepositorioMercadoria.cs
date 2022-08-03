@@ -86,7 +86,7 @@ namespace Repository.Projeto.Implementacao
                         //Tipo Combo
                         if (mercadoria.TipoMercadoria == 1)
                         {
-                            string sql_insert = @"INSERT INTO CAD_Mercadoria 
+                            string sql_insert = @"INSERT INTO CAD_Mercadoria (Descricao,CodBarras,Ativo,TipoMercadoria)
                                             VALUES
                                             (@Descricao, @CodBarras, @Ativo, @TipoMercadoria);";
 
@@ -265,6 +265,20 @@ namespace Repository.Projeto.Implementacao
                         }
                         trans.Commit();
                     }
+                }
+            }
+        }
+
+        public IEnumerable<T> ListarTodasMercadoriasAtivas<T>()
+        {
+            using (SqlConnection con = new SqlConnection(this.StringConexao))
+            {
+                con.Open();
+                using (SqlTransaction transacao = con.BeginTransaction(IsolationLevel.ReadUncommitted))
+                {
+                    String sql = @"SELECT * FROM CAD_Mercadoria WHERE Ativo = 1;";
+
+                    return con.Query<T>(sql, transaction: transacao);
                 }
             }
         }

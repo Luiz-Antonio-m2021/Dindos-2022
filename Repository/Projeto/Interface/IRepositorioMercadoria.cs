@@ -13,7 +13,7 @@ namespace Repository.Projeto.Interface
 
         void SalvarOuAtualizarMercadoria(MercadoriaVO mercadoria, List<MercadoriaComboKitVO> combo, List<MercadoriaPrecoVO> preco);
 
-        
 
+        IEnumerable<T> ListarTodasMercadoriasAtivas<T>();
     }
 }

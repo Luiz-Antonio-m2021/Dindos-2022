@@ -8,8 +8,6 @@ namespace Model
 {
     public class MercadoriaComboKitVO
     {
-        public long IdCombo { get; set; }
-
         public long IdMercadoriaCombo { get; set; }
 
         public Decimal Quantidade { get; set; }

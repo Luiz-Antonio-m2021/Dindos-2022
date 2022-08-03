@@ -38,6 +38,7 @@ namespace Retaguarda.Retaguarda.Forms
             dgvMercadoriaCombo.AutoGenerateColumns = true;
 
             this.PreencherCbmTipoPreco();
+            this.PreencherCbmMercadoriaCombo();
             this.PreencherCbmLocalEstoqueEntraSaida();
             this.Mercadoria = new MercadoriaVO();
             this.Combo = new MercadoriaComboKitVO();
@@ -105,6 +106,28 @@ namespace Retaguarda.Retaguarda.Forms
 
         }
 
+        private void btnAdcionarMerc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ValidarCamposGridMercadoriaCombo();
+
+                this.ValidarMercadoriaJaInformada();
+
+                this.MapearCampoTabParaObjeto();
+
+                this.CarregarDgvMercadoriaCombo();
+            }
+            catch (OperationCanceledException exec)
+            {
+                Util.ExibirMsg(Util.TipoMsg.CampoObg + Environment.NewLine + exec.Message);
+            }
+            catch (Exception ex)
+            {
+                Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
+            }
+        }
+
         private void btnAdcionar_Click(object sender, EventArgs e)
         {
             try
@@ -124,6 +147,20 @@ namespace Retaguarda.Retaguarda.Forms
             }
             catch (Exception ex)
             {
+                Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
+            }
+        }
+
+        private void btnRemoverMerc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.RemoverLinhaDgvMercadoriaCombo();
+                this.CarregarDgvPreco();
+            }
+            catch (Exception ex)
+            {
+
                 Util.ExibirMsg(Util.TipoMsg.Erro + Environment.NewLine + ex.Message);
             }
         }
@@ -200,6 +237,16 @@ namespace Retaguarda.Retaguarda.Forms
             this.Mercadoria.IdLocalEstoqueSaida = Convert.ToInt64(cbmPadraoSaida.SelectedValue);
         }
 
+        private void RemoverLinhaDgvMercadoriaCombo()
+        {
+            if (dgvMercadoriaCombo.SelectedRows.Count > 0)
+            {
+                MercadoriaComboKitVO objRemover = (MercadoriaComboKitVO)dgvMercadoriaCombo.SelectedRows[0].DataBoundItem as MercadoriaComboKitVO;
+
+                ComboLst.Remove(objRemover);
+            }
+        }
+
         private void RemoverLinhaDgvTipoPreco()
         {
             if (dgvPrecoMercadoria.SelectedRows.Count > 0)
@@ -207,6 +254,21 @@ namespace Retaguarda.Retaguarda.Forms
                 MercadoriaPrecoVO objremover = (MercadoriaPrecoVO)dgvPrecoMercadoria.SelectedRows[0].DataBoundItem as MercadoriaPrecoVO;
 
                 PrecoLst.Remove(objremover);
+            }
+        }
+
+        private void ValidarMercadoriaJaInformada()
+        {
+            for (int i = 0; i < dgvMercadoriaCombo.Rows.Count; i++)
+            {
+                for (int j = 0; j < dgvMercadoriaCombo.Columns.Count; j++)
+                {
+                    if (dgvMercadoriaCombo.Rows[i].Cells[j].Value.ToString() == cbmMercadoria.Text)
+                    {
+                        dgvMercadoriaCombo.Rows[i].Cells[j].Selected = true;
+                        throw new OperationCanceledException("Mercadoria ja informado no grid.");
+                    }
+                }
             }
         }
 
@@ -223,6 +285,20 @@ namespace Retaguarda.Retaguarda.Forms
                     }
                 }
             }
+        }
+
+        private void CarregarDgvMercadoriaCombo()
+        {
+            this.dgvMercadoriaCombo.DataSource = ComboLst.ToList();
+        }
+
+        private void MapearCampoTabParaObjeto()
+        {
+            ComboLst.Add(new MercadoriaComboKitVO {
+                IdMercadoriaCombo = Convert.ToInt64(cbmMercadoria.SelectedValue),
+                DescricaoMercadoriaCombo = cbmMercadoria.Text,
+                Quantidade = Convert.ToDecimal(txtQuantidade.Text)
+            });
         }
 
         public void CarregarDgvPreco()
@@ -255,6 +331,26 @@ namespace Retaguarda.Retaguarda.Forms
             {
                 mensagem += Environment.NewLine;
                 mensagem += "Informe o preço para o tipo de preço.";
+            }
+            if (!String.IsNullOrWhiteSpace(mensagem))
+                throw new OperationCanceledException(mensagem);
+
+        }
+
+        private void ValidarCamposGridMercadoriaCombo()
+        {
+            String mensagem = "";
+
+            if (cbmMercadoria.SelectedIndex == -1)
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "Informe uma mercadoria.";
+            }
+
+            if (txtQuantidade.Text.Trim() == "")
+            {
+                mensagem += Environment.NewLine;
+                mensagem += "Informe a quantidade de mercadoria a ser adicionada.";
             }
             if (!String.IsNullOrWhiteSpace(mensagem))
                 throw new OperationCanceledException(mensagem);
@@ -329,10 +425,16 @@ namespace Retaguarda.Retaguarda.Forms
             cbmTipoPreco.DataSource = precos;
         }
 
+        private void PreencherCbmMercadoriaCombo()
+        {
+            IEnumerable<MercadoriaVO> MercCombo = RepositorioFactory.Instancia.RepositorioMercadoria.ConsultaTodos<MercadoriaVO>();
+
+            cbmMercadoria.DisplayMember = "Descricao";
+            cbmMercadoria.ValueMember = "Id";
+            cbmMercadoria.DataSource = MercCombo;
+        }
 
 
         #endregion
-
-
     }
 }
